@@ -1,27 +1,37 @@
-import React, { Component } from 'react';
-import { PostsServices } from '../../services/postsServices';
-
+import React, { Component, Fragment } from 'react';
+import { postsServices } from '../../services/postsServices';
+import { FeedList } from '../components/Feed/FeedList';
 
 export class FeedPage extends Component {
     constructor(props) {
         super(props);
         this.state = ({
-            posts: null
+            posts: []
         })
+    }
+
+
+    componentDidMount() {
+        this.loadPosts();
     }
 
     loadPosts = () => {
 
-        PostsServices.fetchPosts()
-            .then(data => console.log(data))
+        postsServices.fetchPost()
+            .then(data => {
+                this.setState({
+                    posts: data
+                    
+                })
+            })
 
     }
 
     render() {
         return (
-            <div>
-                <p>Nothing in feed</p>
-            </div>
+            <Fragment>
+                <FeedList posts={this.state.posts} />
+            </Fragment>
         );
     }
 

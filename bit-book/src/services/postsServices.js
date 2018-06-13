@@ -1,11 +1,11 @@
 import { postEndpoint, requestsHeader } from '../shared/constants';
-import { apiService } from '../shared/APIService';
 import { Post } from '../entities/Post';
+import { getPost } from '../shared/APIService';
 
-export class PostsServices {
+class PostsServices {
 
     fetchPost() {
-        return apiService.get(postEndpoint, requestsHeader)
+        return getPost(postEndpoint)
             .then(myPostList => {
                 return myPostList.map(post => {
                     return new Post(post.text, post.id, post.date, post.userId, post.userDisplayName, post.type, post.numOfComments)
@@ -14,3 +14,5 @@ export class PostsServices {
             
     }
 };
+
+export const postsServices = new PostsServices;

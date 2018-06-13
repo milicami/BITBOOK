@@ -1,11 +1,16 @@
-import { postEndpoint, requestsHeader } from './constants'
+import { requestsHeader } from './constants'
 
-class APIService {
 
-    get(url) {
-        return fetch(url)
-            .then(response => response.json())
+
+export const getPost = (url) => {
+    return fetch(url, {
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: requestsHeader,
+        method: 'GET',
+        mode: 'cors'
     }
+    )
+        .then(response => response.json())
 }
 
-export const apiService = new APIService()

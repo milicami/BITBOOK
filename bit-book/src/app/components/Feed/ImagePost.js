@@ -1,10 +1,9 @@
 import React from 'react';
 
-export const FeedPost = () => {
-
+export const ImagePost = () => {
     return (
         <div>
-
+            
         </div>
     );
 };
