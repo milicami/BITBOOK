@@ -1,7 +1,6 @@
 import { requestsHeader } from './constants'
 
 
-
 export const getPost = (url) => {
     return fetch(url, {
         cache: 'no-cache',

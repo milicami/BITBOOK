@@ -5,20 +5,13 @@ import { ImagePost } from './ImagePost';
 
 
 export const FeedList = (props) => {
-    
-    const showPosts = () => {
-        const myPosts = props.posts.map((post) => {
-            return <TextPost post={post}/>
-        }
-    )
-    return myPosts;
-}
+
     return (
         <Fragment>
 
-            <div className='container'> 
+            <div className='container'>
 
-                {props.posts === 0
+                {props.posts.length === 0
                     ? <p>nothing in feed</p>
                     : (props.posts.map((post, i) => {
 
