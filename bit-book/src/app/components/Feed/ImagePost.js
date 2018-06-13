@@ -6,7 +6,6 @@ export const ImagePost = (props) => {
     const {imageUrl, commentsNum} = props.post
 
     
-    console.log(props.post);
     return (
 
         <div className='container'>
@@ -16,7 +15,7 @@ export const ImagePost = (props) => {
                         <div className="card-image">
                             <img src={imageUrl} alt='img'/>
                         </div>
-                        <div class="card-action">
+                        <div className="card-action">
                             <a href='!#'>Image Post</a>
                             <Link to='/comments'>{commentsNum}Comments</Link>
                         </div>

@@ -5,19 +5,24 @@ export const TextPost = (props) => {
 
     const { text, commentsNum } = props.post
 
+
+
     return (
-        <div class="row">
-            <div class="col s12">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <p>{text}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="!#">Text Post</a>
-                        <Link to='/comments'>{commentsNum}Comments</Link>
+        <div className='container'>
+            <div className="row">
+                <div className="col s12">
+                    <div className="card">
+                        <div className="card-image">
+                            <p>{text}</p>
+                        </div>
+                        <div className="card-action">
+                            <a href='!#'>Text Post</a>
+                            <Link to='/comments'>{commentsNum}Comments</Link>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     );
 };

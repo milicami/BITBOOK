@@ -8,7 +8,7 @@ class PostsServices {
         return getPost(postEndpoint)
             .then(myPostList => {
                 return myPostList.map(post => {
-                    return new Post(post.text, post.id, post.date, post.userId, post.imageUrl, post.userDisplayName, post.type, post.numOfComments)
+                    return new Post(post.text, post.id, post.date, post.userId, post.imageUrl, post.videoUrl, post.userDisplayName, post.type, post.numOfComments)
                 })
             })
             
