@@ -1,7 +1,7 @@
-import { postEndpoint, requestsHeader } from '../shared/constants';
+import { postEndpoint, } from '../shared/constants';
 import { Post } from '../entities/Post';
 import { getPost } from '../shared/APIService';
-import {TextPost, VideoPost, ImagePost} from '../entities/Post';
+import { TextPost, VideoPost, ImagePost } from '../entities/Post';
 
 class PostsServices {
 
@@ -25,6 +25,10 @@ class PostsServices {
             })
 
     }
+
+
 };
+
+
 
 export const postsServices = new PostsServices;

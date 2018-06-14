@@ -11,4 +11,4 @@ const requestsHeader = {
     'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
 }
 
-export { baseEndpoint, postEndpoint, requestsHeader }
+export { baseEndpoint, postEndpoint, requestsHeader, textPostEndpoint, imagePostEndpoint, videoPostEndpoint }
