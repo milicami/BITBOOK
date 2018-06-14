@@ -7,6 +7,8 @@ import { FeedPage } from './pages/FeedPage';
 
 
 export class App extends Component {
+
+  
   render() {
     return (
       <Fragment>
