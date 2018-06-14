@@ -75,7 +75,7 @@ export class CreatePostModal extends Component {
             userDisplayName: "Average Code",
             type: this.props.newPostType,
             numOfComments: 0,
-            text : postBodyContent
+            imageUrl: postBodyContent
         }
 
         this.createNewPost(newPost)
