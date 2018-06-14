@@ -2,14 +2,21 @@ import { requestsHeader } from './constants'
 
 
 export const getPost = (url) => {
+    
     return fetch(url, {
-        cache: 'no-cache',
-        credentials: 'same-origin',
+        // cache: 'no-cache',
+        // credentials: 'same-origin',
         headers: requestsHeader,
         method: 'GET',
-        mode: 'cors'
+        // mode: 'cors'
     }
     )
-        .then(response => response.json())
+        .then(response => {
+            return response.json()
+        })
+
+        // .then(data => {
+        //     return data
+        // });
 }
 

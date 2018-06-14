@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 export const VideoPost = (props) => {
-    const { videoUrl, commentsNum } = props.post
+    const { videoUrl, type, id, commentsNum } = props.post
 
 
     return (
@@ -12,12 +12,12 @@ export const VideoPost = (props) => {
             <div className="row">
                 <div className="col s12">
                     <div className="card">
-                        <div className="card-image">
+                        <div className="card-image video-container">
                             <iframe width='100%' src={videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                         </div>
                         <div className="card-action">
-                            <span>Video Post</span>
-                            <Link to='/comments'>{commentsNum}Comments</Link>
+                            <span><Link to={`/post/${type}/${id}`}>Video Post </Link></span>
+                            <Link to="">{commentsNum}Comments</Link>
                         </div>
                     </div>
                 </div>

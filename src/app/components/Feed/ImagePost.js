@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const ImagePost = (props) => {
    
-    const {imageUrl, commentsNum} = props.post
+    const {type, id, imageUrl, commentsNum} = props.post
 
     
     return (
@@ -16,8 +16,8 @@ export const ImagePost = (props) => {
                             <img src={imageUrl} alt='img'/>
                         </div>
                         <div className="card-action">
-                            <span>Image Post</span>
-                            <Link to='/comments'>{commentsNum}Comments</Link>
+                            <span><Link to={`/post/${type}/${id}`}>Image Post </Link></span>
+                            <Link to={`/post/${type}/${id}`}>{commentsNum}Comments</Link>
                         </div>
                     </div>
                 </div>

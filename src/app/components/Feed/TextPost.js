@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const TextPost = (props) => {
 
-    const { text, commentsNum } = props.post
+    const { text,type, id, commentsNum } = props.post
 
 
     return (
@@ -15,8 +15,8 @@ export const TextPost = (props) => {
                             <p>{text}</p>
                         </div>
                         <div className="card-action">
-                            <span>Text Post</span>
-                            <Link to='/comments'>{commentsNum}Comments</Link>
+                            <span><Link to={`/post/${type}/${id}`}>Text Post </Link></span>
+                            <Link to="">{commentsNum}Comments</Link>
                         </div>
                     </div>
                 </div>
