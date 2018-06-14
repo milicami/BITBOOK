@@ -13,3 +13,7 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.video-post {
+  height: 200px;
+}

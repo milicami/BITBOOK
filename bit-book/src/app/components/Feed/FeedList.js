@@ -13,21 +13,17 @@ export const FeedList = (props) => {
 
                 {props.posts.length === 0
                     ? <p>nothing in feed</p>
-                    : (props.posts.map((post, i) => {
-
+                    : (props.posts.map((post, key) => {
+                        
                         switch (post.type) {
                             case 'text':
-                                return <TextPost post={post} key={i} />
-                                break;
+                                return <TextPost post={post} key={key} />
                             case 'image':
-                                return <ImagePost post={post} key={i} />
-                                break;
+                                return <ImagePost post={post} key={key} />
                             case 'video':
-                                return <VideoPost post={post} key={i} />;
-                                break;
+                                return <VideoPost post={post} key={key} />;
                             default:
-                                return <p>error</p>
-                                break;
+                                return <p>not valid type of input</p>
                         }
                     }))}
             </div>

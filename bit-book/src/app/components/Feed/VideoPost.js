@@ -8,7 +8,7 @@ export const VideoPost = (props) => {
 
     return (
 
-        <div className='container'>
+        <div className='container video-post'>
             <div className="row">
                 <div className="col s12">
                     <div className="card">
@@ -16,7 +16,7 @@ export const VideoPost = (props) => {
                             <iframe width='100%' src={videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                         </div>
                         <div className="card-action">
-                            <a href='!#'>Image Post</a>
+                            <span>Video Post</span>
                             <Link to='/comments'>{commentsNum}Comments</Link>
                         </div>
                     </div>

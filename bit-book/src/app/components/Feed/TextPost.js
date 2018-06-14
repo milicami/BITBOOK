@@ -6,7 +6,6 @@ export const TextPost = (props) => {
     const { text, commentsNum } = props.post
 
 
-
     return (
         <div className='container'>
             <div className="row">
@@ -16,7 +15,7 @@ export const TextPost = (props) => {
                             <p>{text}</p>
                         </div>
                         <div className="card-action">
-                            <a href='!#'>Text Post</a>
+                            <span>Text Post</span>
                             <Link to='/comments'>{commentsNum}Comments</Link>
                         </div>
                     </div>

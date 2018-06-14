@@ -16,7 +16,7 @@ export const ImagePost = (props) => {
                             <img src={imageUrl} alt='img'/>
                         </div>
                         <div className="card-action">
-                            <a href='!#'>Image Post</a>
+                            <span>Image Post</span>
                             <Link to='/comments'>{commentsNum}Comments</Link>
                         </div>
                     </div>
