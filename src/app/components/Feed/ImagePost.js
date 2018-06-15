@@ -7,7 +7,6 @@ export const ImagePost = (props) => {
 
 
     return (
-
         <div className='container'>
             <div className="row">
                 <div className="col s12">

@@ -1,12 +1,15 @@
-import { commentsEndpoint, requestsHeader } from '../shared/constants';
-import { get } from '../shared/APIService';
+import { commentsEndpoint, requestsHeader, newCommentEndpoint } from '../shared/constants';
+import { get, post } from '../shared/APIService';
 
 class CommentsServices {
 
     
     fetchComments(postId) {
-            
         return get(`${commentsEndpoint}${postId}`)
+    }
+
+    addComment(data) {
+        return post(`${newCommentEndpoint}`, data)
     }
 }
 

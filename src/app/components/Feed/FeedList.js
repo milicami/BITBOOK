@@ -8,9 +8,7 @@ export const FeedList = (props) => {
 
     return (
         <Fragment>
-
             <div className='container'>
-
                 {props.posts.length === 0
                     ? <p>nothing in feed</p>
                     : (props.posts.map((post, key) => {
@@ -24,6 +22,7 @@ export const FeedList = (props) => {
                                 return <VideoPost post={post} key={key} />;
                             default:
                                 return <p>not valid type of input</p>
+
                         }
                     }))}
             </div>

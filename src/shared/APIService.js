@@ -9,10 +9,21 @@ export const get = (url) => {
         headers: requestsHeader,
         method: 'GET',
         mode: 'cors'
-    }
-    )
+    })
         .then(response => {
             return response.json()
         })
 }
 
+
+export const post = (url, newContent) => {
+
+    const postData = {
+        method: 'POST',
+        body: JSON.stringify(newContent),
+        headers: requestsHeader,
+
+    }
+    return fetch(url, postData)
+     
+}

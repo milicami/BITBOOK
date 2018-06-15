@@ -15,8 +15,9 @@ export class PostPage extends Component {
 
         this.state = {
             post: null,
-            comments: [],
-            user: {}
+            comments: null,
+            user: {},
+            inputValue: ""
         }
     }
 
@@ -25,7 +26,6 @@ export class PostPage extends Component {
         this.loadComments(this.props.match.params.id);
     }
 
-
     loadSinglePost = (type, postId) => {
         postsServices.fetchSinglePost(type, postId)
             .then(post => {
@@ -33,7 +33,6 @@ export class PostPage extends Component {
                 this.loadSingleUser(post.userId);
             });
     }
-
 
     loadComments = (commentId) => {
         commentsServices.fetchComments(commentId)
@@ -53,8 +52,7 @@ export class PostPage extends Component {
             })
     }
 
-
-    renderPost = () => {
+    displayPost = () => {
         switch (this.state.post.type) {
             case 'text':
                 return <SingleTextPost post={this.state.post} />
@@ -67,21 +65,64 @@ export class PostPage extends Component {
         }
     }
 
+    handleChange = (event) => {
+        event.preventDefault();
+        this.setState({
+            inputValue: event.target.value
+        });
+    }
+
+    loadNewComment = () => {
+        const comment = {
+            body: this.state.inputValue,
+            postId: this.state.post.id,
+        }
+
+        commentsServices.addComment(comment)
+            .then((response) => {
+                return response.json()
+            })
+            .then(newPost => {
+                this.loadComments(this.props.match.params.id)
+                this.setState({
+                    inputValue: ''
+                });
+            })
+
+
+    }
+
+    mapComments = () => {
+        this.state.comments.map(comment => {
+            return <SingleComment comment={comment} user={this.state.user} />
+        })
+    }
+
     render() {
+
+        if (!this.state.comments) {
+            return <h3>Loading...</h3>
+        }
         return (
             <Fragment>
-                {this.state.post === null ? "" : this.renderPost()}
+                {this.state.post === null ? "" : this.displayPost()}
                 <br />
                 <div className="container comments">
-                    <div className='row'>
-                        <input type="text" name="comments" placeholder="Add your comments" className='col s9' />
-                        <input type="button" value="Send" className='col s2' />
+                    <div className="row">
+                        <div className="input-field">
+                            <input type="text" id="autocomplete-input" className="autocomplete col s11" placeholder='Add your comment' onChange={this.handleChange} />
+                            <label htmlFor="autocomplete-input" ></label>
+                            <div className='col s1'>
+                                <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.loadNewComment}>SEND</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {this.state.comments.map(comment => {
                     return <SingleComment comment={comment} user={this.state.user} />
 
-                })}}
+                })}
+                {/* {this.mapComments()} */}
             </Fragment>
         )
     }
