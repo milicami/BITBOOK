@@ -1,3 +1,4 @@
+
 import { postEndpoint, requestsHeader, commentsEndpoint, baseEndpoint} from '../shared/constants';
 import { Post } from '../entities/Post';
 import { get } from '../shared/APIService';
@@ -23,8 +24,8 @@ class PostsServices {
                 console.error(error);
                 alert('Something went wrong, try again later.')
             })
-
     }
+
 
     typeUrl = (type) => {
         let url = ''

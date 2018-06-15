@@ -3,6 +3,8 @@ import { TextPost } from './TextPost';
 import { VideoPost } from './VideoPost';
 import { ImagePost } from './ImagePost';
 
+import M from "materialize-css"
+
 
 export const FeedList = (props) => {
 
@@ -12,7 +14,7 @@ export const FeedList = (props) => {
                 {props.posts.length === 0
                     ? <p>nothing in feed</p>
                     : (props.posts.map((post, key) => {
-                        
+
                         switch (post.type) {
                             case 'text':
                                 return <TextPost post={post} key={key} />
@@ -25,6 +27,7 @@ export const FeedList = (props) => {
 
                         }
                     }))}
+
             </div>
         </Fragment>
     );

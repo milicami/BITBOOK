@@ -10,4 +10,4 @@ const requestsHeader = {
     'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
 }
 
-export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint }
+export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint }

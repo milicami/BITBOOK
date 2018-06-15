@@ -1,14 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import "materialize-css/dist/css/materialize.css"
 import { Header } from './partials/Header';
 import { Footer } from './partials/Footer';
 import { FeedPage } from './pages/FeedPage';
+import M from "materialize-css"
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { PostPage } from './pages/PostPage';
-
 
 export class App extends Component {
 
+
+  componentDidMount() {
+    M.AutoInit();
+  }
 
   render() {
     return (
