@@ -23,12 +23,8 @@ class PostsServices {
                 console.error(error);
                 alert('Something went wrong, try again later.')
             })
-
     }
-
-
+    
 };
-
-
 
 export const postsServices = new PostsServices;

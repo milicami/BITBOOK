@@ -17,23 +17,19 @@ export class FeedPage extends Component {
 
     componentDidMount() {
         this.loadPosts();
-     
     }
 
 
     loadPosts = () => {
-
         postsServices.fetchPost()
             .then(data => {
                 this.setState({
                     posts: data
                 })
             });
-
     }
 
     handlerPostType = (event) => {
-
         if (event.target.parentElement.getAttribute("data-target") === 'modalPost') {
             this.setState({
                 newPostType: 'text'
@@ -47,7 +43,6 @@ export class FeedPage extends Component {
                 newPostType: 'videoUrl'
             });
         }
-
     }
 
     chooseEndpoint = () => {
@@ -78,7 +73,7 @@ export class FeedPage extends Component {
 
 
     handleSubmit = (postBodyContent) => {
-       let newPostPropertyType = this.state.newPostType;
+        let newPostPropertyType = this.state.newPostType;
 
         const newPost = {
             date: Date.now(),
@@ -86,35 +81,40 @@ export class FeedPage extends Component {
             userDisplayName: "Average Code",
             type: this.state.newPostType,
             numOfComments: 0,
-            
+
         }
 
-        if (newPostPropertyType === "text"){
+        if (newPostPropertyType === "text") {
             newPost["text"] = postBodyContent;
         } else if (newPostPropertyType === "imageUrl") {
             newPost["imageUrl"] = postBodyContent;
-        } else if (newPostPropertyType === "imageUrl") {
-            newPost["videoUrl"] = postBodyContent;
+        } else if (newPostPropertyType === "videoUrl") {
+            newPost["videoUrl"] = postBodyContent.replace("watch?v=", "embed/");
         }
-    
+
         this.createNewPost(newPost)
             .then(response => {
                 return response.json()
             })
             .then(newPost => {
-                this.setState({newPostType: null});
-                console.log(newPost);
+                this.setState({ newPostType: null });
+                this.loadPosts();
             })
+    }
+
+    handleClose = () => {
+        this.setState({
+            newPostType: null
+        });
     }
 
     render() {
         return (
             <Fragment>
                 <FeedList posts={this.state.posts} />
-                <CreatePostModal newPostType={this.state.newPostType} handleSubmit={this.handleSubmit} loadPosts={this.loadPosts}/>
+                <CreatePostModal newPostType={this.state.newPostType} handleSubmit={this.handleSubmit} loadPosts={this.loadPosts} handleClose={this.handleClose} />
                 <CreatePostButton handlerPostType={this.handlerPostType} />
             </Fragment>
-
         );
     }
 
