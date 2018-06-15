@@ -19,9 +19,9 @@ export class FeedPage extends Component {
         this.loadPosts();
     }
 
-
     loadPosts = () => {
-        postsServices.fetchPost()
+
+        postsServices.fetchPosts()
             .then(data => {
                 this.setState({
                     posts: data

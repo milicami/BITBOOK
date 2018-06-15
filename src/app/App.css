@@ -1,10 +1,11 @@
-.App {
-  text-align: center;
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+main {
+  flex: 1 0 auto;
 }
 
 .App-header {
@@ -44,3 +45,4 @@
 .showValidateMessage {
   display: block;
 }
+
