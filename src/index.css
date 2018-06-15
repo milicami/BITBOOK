@@ -4,16 +4,17 @@ body {
   font-family: sans-serif;
 }
 
-#root {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+.singleTextPost {
+  text-align: center;
+  margin-top: 20px;
 }
 
-main {
-  flex: 1 0 auto;
+.singleVideoPost {
+  text-align: center;
+  margin-top: 20px;
 }
 
-.video-post {
-  height: 200px;
+.singleImagePost {
+  text-align: center;
+  margin-top: 20px;
 }
