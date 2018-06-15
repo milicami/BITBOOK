@@ -3,7 +3,7 @@ import React from 'react';
 export const SingleTextPost = (props) => {
 
     return (
-        <div>
+        <div className="singleTextPost">
             {props.post.text}
         </div>
     );

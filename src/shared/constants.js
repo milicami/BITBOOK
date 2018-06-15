@@ -1,8 +1,5 @@
 const baseEndpoint = 'http://bitbookapi.azurewebsites.net/api';
 const postEndpoint = 'http://bitbookapi.azurewebsites.net/api/Posts';
-// const textPostEndpoint = 'http://bitbookapi.azurewebsites.net/api/TextPosts';
-// const imagePostEndpoint = 'http://bitbookapi.azurewebsites.net/api/ImagePosts';
-// const videoPostEndpoint = 'http://bitbookapi.azurewebsites.net/api/VideoPosts';
 const commentsEndpoint = 'http://bitbookapi.azurewebsites.net/api/Comments?postId=';
 const userEndpoint = 'http://bitbookapi.azurewebsites.net/api/users';
 

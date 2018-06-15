@@ -10,11 +10,10 @@ class UsersServices {
             .then(user => {
                 return new User(user.userId, user.name, user.email, user.aboutShort, user.about, user.avatarUrl, user.postsCount, user.commentsCount)
             })
-            // .catch(error => {
-            //     console.error(error);
-            //     alert('No user to show.')
-            // })
-
+            .catch(error => {
+                console.error(error);
+                alert('No user to show.')
+            })
     }
 }
 export const usersServices = new UsersServices;

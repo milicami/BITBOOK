@@ -29,7 +29,7 @@ export class PostPage extends Component {
     loadSinglePost = (type, postId) => {
         postsServices.fetchSinglePost(type, postId)
             .then(post => {
-                this.setState({post});
+                this.setState({ post });
                 this.loadSingleUser(post.userId);
             });
     }
@@ -79,9 +79,9 @@ export class PostPage extends Component {
                     </div>
                 </div>
                 {this.state.comments.map(comment => {
-                    return <SingleComment comment={comment} user={this.state.user}/>
+                    return <SingleComment comment={comment} user={this.state.user} />
 
-                })}
+                })}}
             </Fragment>
         )
     }

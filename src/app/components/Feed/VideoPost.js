@@ -16,8 +16,8 @@ export const VideoPost = (props) => {
                             <iframe width='100%' src={videoUrl} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                         </div>
                         <div className="card-action">
-                            <span><Link to={`/post/${type}/${id}`}>Video Post </Link></span>
-                            <Link to="">{commentsNum}Comments</Link>
+                            <span>Video Post </span>
+                            <Link to={`/post/${type}/${id}`}> {commentsNum === 0 ? "0" : commentsNum} comments</Link>
                         </div>
                     </div>
                 </div>
