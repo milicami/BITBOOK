@@ -3,6 +3,9 @@ const postEndpoint = 'http://bitbookapi.azurewebsites.net/api/Posts';
 const commentsEndpoint = 'http://bitbookapi.azurewebsites.net/api/Comments?postId=';
 const newCommentEndpoint = "http://bitbookapi.azurewebsites.net/api/Comments";
 const userEndpoint = 'http://bitbookapi.azurewebsites.net/api/users';
+const textPostEndpoint = 'http://bitbookapi.azurewebsites.net/api/TextPosts';
+const imagePostEndpoint = 'http://bitbookapi.azurewebsites.net/api/ImagePosts';
+const videoPostEndpoint = 'http://bitbookapi.azurewebsites.net/api/VideoPosts';
 
 const requestsHeader = {
     'Content-Type': 'application/json',

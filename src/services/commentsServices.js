@@ -1,5 +1,5 @@
 import { commentsEndpoint, requestsHeader, newCommentEndpoint } from '../shared/constants';
-import { get, post } from '../shared/APIService';
+import { get, post } from './APIService';
 
 class CommentsServices {
 

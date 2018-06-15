@@ -9,8 +9,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { PostPage } from './pages/PostPage';
 
 export class App extends Component {
-
-
   componentDidMount() {
     M.AutoInit();
   }
@@ -19,11 +17,13 @@ export class App extends Component {
     return (
       <Fragment>
         <Header />
+        <main>
         <Switch>
           <Route path="/feed" component={FeedPage} />
           <Route path="/post/:type/:id" component={PostPage} />
           <Route path="/post/:id" component={PostPage} />
         </Switch>
+        </main>
         <Footer />
       </Fragment>
     );
