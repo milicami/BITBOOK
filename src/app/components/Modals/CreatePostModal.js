@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import M from "materialize-css";
-import { textPostEndpoint, imagePostEndpoint, videoPostEndpoint } from "../../../shared/constants";
+
 
 export class CreatePostModal extends Component {
     constructor(props) {
@@ -22,75 +22,16 @@ export class CreatePostModal extends Component {
     //     })
     // }
 
-    chooseEndpoint = () => {
-        const postBodyType = this.props.newPostType
-        let makePostEndpoint = "";
-        if (postBodyType === "text") {
-            makePostEndpoint = textPostEndpoint
-        } else if (postBodyType === "imageUrl") {
-            makePostEndpoint = imagePostEndpoint
-        } else if (postBodyType === "videoUrl") {
-            makePostEndpoint = videoPostEndpoint
-        }
-        return makePostEndpoint;
-    };
-
-    createNewPost = (newPost) => {
-        const requestOptions = {
-            method: 'POST',
-            body: JSON.stringify(newPost),
-            headers: {
-                'Content-Type': 'application/json',
-                'Key': 'bitbookdev',
-                'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
-            }
-        }
-        return fetch(this.chooseEndpoint(), requestOptions)
-    };
-
-    
-    // type = () => {
-    //     switch(this.props.newPostType) {
-    //         case 'text' : 
-    //         text : text;
-    //         break;
-    //         case 'imageUrl' : 
-    //         imageUrl = imageUrl;
-    //         break;
-    //         case 'videoUrl' : 
-    //         videoUrl = videoUrl;
-    //         break;
-    //     }
-        
-    //    } 
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        const postBodyContent = this.state.inputValue;
-       
-        const newPost = {
-            id: 1,
-            date: Date.now(),
-            userId: 1,
-            userDisplayName: "Average Code",
-            type: this.props.newPostType,
-            numOfComments: 0,
-            imageUrl: postBodyContent
-        }
-
-        this.createNewPost(newPost)
-            .then(response => {
-                return response.json()
-            })
-            .then(newPost => {
-                console.log(newPost);
-            })
-
-        this.setState({
-            inputValue: ''
-        });;
-
-    }
+  
+   
+   onCreate = (event) => {
+    event.preventDefault();
+    this.props.handleSubmit(this.state.inputValue);
+    this.setState({
+        inputValue: ""
+    });
+    this.props.loadPosts();
+   }
 
     renderTextForm = () => {
         return (
@@ -102,7 +43,7 @@ export class CreatePostModal extends Component {
                         onChange={this.handleChange} />
                 </div>
                 <div className="modal-footer">
-                    <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={this.handleSubmit}>POST</a>
+                    <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={this.onCreate}>POST</a>
                 </div>
             </React.Fragment>
         )
@@ -118,7 +59,7 @@ export class CreatePostModal extends Component {
                         onChange={this.handleChange} />
                 </div>
                 <div className="modal-footer">
-                    <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={this.handleSubmit}>Post</a>
+                    <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={this.onCreate}>Post</a>
                 </div>
             </React.Fragment>
         )
@@ -134,7 +75,7 @@ export class CreatePostModal extends Component {
                         onChange={this.handleChange} />
                 </div>
                 <div className="modal-footer">
-                    <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={this.handleSubmit}>Post</a>
+                    <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={this.onCreate}>Post</a>
                 </div>
             </React.Fragment>
         )

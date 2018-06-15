@@ -1,12 +1,12 @@
 import { postEndpoint, } from '../shared/constants';
 import { Post } from '../entities/Post';
-import { getPost } from '../shared/APIService';
+import { get } from '../shared/APIService';
 import { TextPost, VideoPost, ImagePost } from '../entities/Post';
 
 class PostsServices {
 
     fetchPost() {
-        return getPost(postEndpoint)
+        return get(postEndpoint)
             .then(myPostList => {
                 return myPostList.map(post => {
                     switch (post.type) {
