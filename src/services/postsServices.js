@@ -1,12 +1,12 @@
-import { postEndpoint, requestsHeader, commentsEndpoint, baseEndpoint } from '../shared/constants';
+import { postEndpoint, requestsHeader, commentsEndpoint, baseEndpoint} from '../shared/constants';
 import { Post } from '../entities/Post';
-import { getPost } from '../shared/APIService';
+import { get } from '../shared/APIService';
 import { TextPost, VideoPost, ImagePost } from '../entities/Post';
 
 class PostsServices {
 
-    fetchPost() {
-        return getPost(postEndpoint)
+    fetchPosts() {
+        return get(postEndpoint)
             .then(myPostList => {
                 return myPostList.map(post => {
                     switch (post.type) {
@@ -44,16 +44,10 @@ class PostsServices {
 
     fetchSinglePost(type, singlePostId) {
         
-        const urlEndpoint = `${this.typeUrl(type)}${singlePostId}`;
-        return getPost(urlEndpoint)
+        const urlEndpoint = (`${this.typeUrl(type)}${singlePostId}`);
+        return get(urlEndpoint)
            
     }
-        
-    fetchComments(postId) {
-        
-        return getPost(`${commentsEndpoint}${postId}`)
-    }
-
 
 };
 

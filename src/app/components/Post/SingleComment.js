@@ -2,17 +2,19 @@ import React, {Fragment} from 'react';
 
 export const SingleComment = (props) => {
 
-    console.log(props.comment.comment)
-
     return (
         <Fragment>
+            <div className='container'>
             <ul className="collection">
                 <li className="collection-item avatar">
-                    <img src="images/yuna.jpg" alt="" className="circle" />
-                    <p> {props.comment.body}</p>
-                    <a href="#!" className="secondary-content"></a>
+                <div className='row'>
+                    <img src={props.user.avatarUrl} alt="user-img" className="circle col s2" />
+                    <p>{props.user.name}</p>
+                    <p>{props.comment.body}</p>
+                </div>
                 </li>
             </ul>
+            </div>
         </Fragment>
     );
 };

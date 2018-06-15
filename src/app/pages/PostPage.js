@@ -4,6 +4,8 @@ import { SingleTextPost } from '../components/Post/SingleTextPost';
 import { SingleVideoPost } from '../components/Post/SingleVideoPost';
 import { SingleImagePost } from '../components/Post/SingleImagePost';
 import { SingleComment } from '../components/Post/SingleComment';
+import { commentsServices } from '../../services/commentsServices';
+import { usersServices } from '../../services/usersServices';
 
 
 export class PostPage extends Component {
@@ -13,41 +15,46 @@ export class PostPage extends Component {
 
         this.state = {
             post: null,
-            comments: []
+            comments: [],
+            user: {}
         }
     }
 
     componentDidMount() {
-        this.loadPost(this.props.match.params.type, this.props.match.params.id);
+        this.loadSinglePost(this.props.match.params.type, this.props.match.params.id);
         this.loadComments(this.props.match.params.id);
     }
 
-    loadPost = (type, postId) => {
 
+    loadSinglePost = (type, postId) => {
         postsServices.fetchSinglePost(type, postId)
             .then(post => {
-                console.log(post);
-                
-                this.setState({
-                    post: post
-                });
+                this.setState({post});
+                this.loadSingleUser(post.userId);
             });
     }
 
-    loadComments = (id) => {
-        postsServices.fetchComments(id)
+
+    loadComments = (commentId) => {
+        commentsServices.fetchComments(commentId)
             .then(comments => {
-                console.log(comments);
-                
                 this.setState({
                     comments: comments
                 })
             })
     }
 
+    loadSingleUser = (userId) => {
+        usersServices.fetchSingleUser(userId)
+            .then(user => {
+                this.setState({
+                    user: user
+                })
+            })
+    }
+
 
     renderPost = () => {
-
         switch (this.state.post.type) {
             case 'text':
                 return <SingleTextPost post={this.state.post} />
@@ -71,8 +78,8 @@ export class PostPage extends Component {
                         <input type="button" value="Send" className='col s2' />
                     </div>
                 </div>
-                {this.state.comments.map(comment =>{
-                   return <SingleComment comment={comment} />
+                {this.state.comments.map(comment => {
+                    return <SingleComment comment={comment} user={this.state.user}/>
 
                 })}
             </Fragment>
