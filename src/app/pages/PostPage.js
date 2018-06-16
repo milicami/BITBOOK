@@ -72,23 +72,28 @@ export class PostPage extends Component {
         });
     }
 
-    loadNewComment = () => {
+    loadNewComment = (event) => {
         const comment = {
             body: this.state.inputValue,
             postId: this.state.post.id,
         }
 
-        commentsServices.addComment(comment)
-            .then((response) => {
-                return response.json()
-            })
-            .then(newPost => {
-                this.loadComments(this.props.match.params.id)
-                this.setState({
-                    inputValue: ''
-                });
-            })
+        if (this.state.inputValue === "") {
+            event.preventDefault();
+            
+        } else {
 
+            commentsServices.addComment(comment)
+                .then((response) => {
+                    return response.json()
+                })
+                .then(newPost => {
+                    this.loadComments(this.props.match.params.id)
+                    this.setState({
+                        inputValue: ''
+                    });
+                })
+        }
 
     }
 
@@ -122,7 +127,6 @@ export class PostPage extends Component {
                     return <SingleComment comment={comment} user={this.state.user} />
 
                 })}
-                {/* {this.mapComments()} */}
             </Fragment>
         )
     }

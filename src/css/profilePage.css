@@ -1,0 +1,23 @@
+.img {
+    border-radius: 50%;
+    width: 30%;
+    margin-top: 8%;
+    margin-bottom: 2%
+
+}
+
+.row {
+    text-align: center;
+
+}
+
+.comment-button {
+    background-color: rgb(216, 143, 131);
+    border-radius: 30px;
+    margin-bottom: 5%;
+    
+}
+.about-short {
+    margin-top: 6%;
+    margin-bottom: 10%
+}
