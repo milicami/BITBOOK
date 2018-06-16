@@ -1,5 +1,5 @@
 import { userEndpoint, requestsHeader } from "../shared/constants";
-import { get } from "../shared/APIService";
+import { get } from "./APIService";
 import { User } from "../entities/User";
 
 class UsersServices {
