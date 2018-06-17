@@ -1,4 +1,4 @@
-
+import { textPostEndpoint, imagePostEndpoint, videoPostEndpoint } from "../shared/constants";
 import { postEndpoint, requestsHeader, commentsEndpoint, baseEndpoint} from '../shared/constants';
 import { Post } from '../entities/Post';
 import { get } from './APIService';
@@ -49,6 +49,31 @@ class PostsServices {
         return get(urlEndpoint)
            
     }
+
+    chooseEndpoint = (postBodyType) => {
+        let makePostEndpoint = "";
+        if (postBodyType === "text") {
+            makePostEndpoint = textPostEndpoint
+        } else if (postBodyType === "imageUrl") {
+            makePostEndpoint = imagePostEndpoint
+        } else if (postBodyType === "videoUrl") {
+            makePostEndpoint = videoPostEndpoint
+        }
+        return makePostEndpoint;
+    };
+
+    createNewPost = (newPost, postBodyType) => {
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(newPost),
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbookdev',
+                'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
+            }
+        }
+        return fetch(this.chooseEndpoint(postBodyType), requestOptions)
+    };
 
 };
 

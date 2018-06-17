@@ -3,7 +3,7 @@ import { postsServices } from '../../services/postsServices';
 import { FeedList } from '../components/Feed/FeedList';
 import { CreatePostButton } from '../components/Feed/CreatePostButton'
 import { CreatePostModal } from "../components/Modals/CreatePostModal"
-import { textPostEndpoint, imagePostEndpoint, videoPostEndpoint } from "../../shared/constants";
+
 
 export class FeedPage extends Component {
     constructor(props) {
@@ -26,6 +26,9 @@ export class FeedPage extends Component {
                 this.setState({
                     posts: data
                 })
+            }).catch(message => {
+                console.log(message)
+                alert("Failed to load posts.")
             });
     }
 
@@ -45,33 +48,7 @@ export class FeedPage extends Component {
         }
     }
 
-    chooseEndpoint = () => {
-        const postBodyType = this.state.newPostType
-        let makePostEndpoint = "";
-        if (postBodyType === "text") {
-            makePostEndpoint = textPostEndpoint
-        } else if (postBodyType === "imageUrl") {
-            makePostEndpoint = imagePostEndpoint
-        } else if (postBodyType === "videoUrl") {
-            makePostEndpoint = videoPostEndpoint
-        }
-        return makePostEndpoint;
-    };
-
-    createNewPost = (newPost) => {
-        const requestOptions = {
-            method: 'POST',
-            body: JSON.stringify(newPost),
-            headers: {
-                'Content-Type': 'application/json',
-                'Key': 'bitbookdev',
-                'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
-            }
-        }
-        return fetch(this.chooseEndpoint(), requestOptions)
-    };
-
-
+    
     handleSubmit = (postBodyContent) => {
         let newPostPropertyType = this.state.newPostType;
 
@@ -92,13 +69,16 @@ export class FeedPage extends Component {
             newPost["videoUrl"] = postBodyContent.replace("watch?v=", "embed/");
         }
 
-        this.createNewPost(newPost)
+        postsServices.createNewPost(newPost, this.state.newPostType)
             .then(response => {
                 return response.json()
             })
             .then(newPost => {
                 this.setState({ newPostType: null });
                 this.loadPosts();
+            }).catch(message => {
+                console.log(message)
+                alert("Failed to create post.")
             })
     }
 
