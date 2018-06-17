@@ -1,5 +1,5 @@
 export class User {
-    constructor(userId, name, email, aboutShort, about, avatarUrl, postsCount, commentsCount) {
+    constructor(userId, name, email, aboutShort, about, avatarUrl, postsCount, commentsCount, lastPostDate) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -8,5 +8,6 @@ export class User {
         this.avatarUrl = avatarUrl;
         this.postsCount = postsCount;
         this.commentsCount = commentsCount;
+        this.lastPostDate = lastPostDate
     }
 }
