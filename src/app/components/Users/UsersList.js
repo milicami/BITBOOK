@@ -1,18 +1,24 @@
 import React, { Fragment, Component } from 'react';
-import { SingleUser } from "./SingleUserCard"
-import { SearchUsers } from "./SearchUsers"
+import { SingleUser } from "./SingleUserCard";
+import { SearchUsers } from "./SearchUsers";
+import {NoUser} from "./NoUser";
 
 export class UserList extends Component {
     constructor(props) {
         super(props);
-
     };
 
     renderUsers = () => {
         const users = this.props.users;
-        return users.map((user, index) => {
-            return <SingleUser myUser={user} key={index} />
-        });
+        if (users.length > 0) {
+            return users.map((user, index) => {
+                return <SingleUser myUser={user} key={index} />
+            });
+        } else {
+            return (
+               <NoUser />
+            )
+        }
     };
 
     render() {

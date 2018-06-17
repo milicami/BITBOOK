@@ -8,8 +8,7 @@ export const SingleUser = (props) => {
             <p>{props.myUser.name}<br />
                 {props.myUser.aboutShort}
             </p>
-            <p className="right">{props.myUser.lastPostDate}</p> 
-            {/* ovde treba da se prikaye ili samo datum i sat ili samo sat u props.myUser.lastPostDate */}
+            <p className="right">{props.myUser.getTimeForLastPostDate()}</p> 
         </li>
     )
 }
