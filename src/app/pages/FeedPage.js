@@ -14,7 +14,6 @@ export class FeedPage extends Component {
         })
     }
 
-
     componentDidMount() {
         this.loadPosts();
     }
@@ -48,6 +47,7 @@ export class FeedPage extends Component {
     chooseEndpoint = () => {
         const postBodyType = this.state.newPostType
         let makePostEndpoint = "";
+        
         if (postBodyType === "text") {
             makePostEndpoint = textPostEndpoint
         } else if (postBodyType === "imageUrl") {

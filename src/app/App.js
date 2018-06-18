@@ -20,9 +20,9 @@ export class App extends Component {
         <Header />
         <main>
           <Switch>
-            <Route path="/feed" component={FeedPage} />
+            <Route exact path="/feed" component={FeedPage} />
             <Route path="/post/:type/:id" component={PostPage} />
-            <Route path="/post/:id" component={PostPage} />
+            {/* <Route path="/post/:id" component={PostPage} /> */}
             <Route path="/profile" component={ProfilePage} />
           </Switch>
         </main>
