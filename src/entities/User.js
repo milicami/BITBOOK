@@ -5,7 +5,7 @@ export class User {
         this.email = email;
         this.aboutShort = aboutShort;
         this.about = about;
-        this.avatarUrl = avatarUrl;
+        this.avatarUrl = avatarUrl ? avatarUrl : "http://via.placeholder.com/100x100";
         this.postsCount = postsCount;
         this.commentsCount = commentsCount;
         this.lastPostDate = lastPostDate ? new Date(lastPostDate) : null;
