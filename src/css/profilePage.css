@@ -23,3 +23,7 @@ img.img {
     margin-top: 6%;
     margin-bottom: 10%
 }
+
+.hide{
+    display: none
+}

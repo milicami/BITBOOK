@@ -1,5 +1,4 @@
-
-import {requestsHeader} from '../shared/constants';
+import {requestsHeader, userEditProfileEndpoint} from '../shared/constants';
 
 
 export const get = (url) => {
@@ -27,4 +26,19 @@ export const post = (url, newContent) => {
     }
     return fetch(url, postData)
      
+}
+
+export const put = (url, data) => {
+
+    return fetch(url, {
+        // cache: 'no-cache',
+        // credentials: 'same-origin',
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: requestsHeader,
+        // mode: 'cors'
+    })
+        .then(response => {
+            return response.json()
+        })
 }
