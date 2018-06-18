@@ -7,11 +7,12 @@ import { FeedPage } from './pages/FeedPage';
 import M from "materialize-css"
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { PostPage } from './pages/PostPage';
+import {PeoplePage} from "./pages/PeoplePage";
 import { ProfilePage } from './pages/ProfilePage';
 
 export class App extends Component {
   componentDidMount() {
-    M.AutoInit();
+    // M.AutoInit();
   }
 
   render() {
@@ -24,6 +25,7 @@ export class App extends Component {
             <Route path="/post/:type/:id" component={PostPage} />
             {/* <Route path="/post/:id" component={PostPage} /> */}
             <Route path="/profile" component={ProfilePage} />
+            <Route exact path="/people" component={PeoplePage} />
           </Switch>
         </main>
         <Footer />

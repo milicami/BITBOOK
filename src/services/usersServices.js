@@ -16,6 +16,19 @@ class UsersServices {
             })
     }
 
+
+    fetchUsers() {
+        return get(userEndpoint)
+        .then(users => {
+           return users.map(user => {
+                return new User(user.id, user.name, "", user.aboutShort, "", user.avatarUrl, "", "", user.lastPostDate)
+            })
+        })
+        .catch(error => {
+            console.error(error);
+            alert('No user to show.')
+        })
+
     fetchProfile() {
         return get(profileEndpoint)
             .then((profile) => {
@@ -25,6 +38,7 @@ class UsersServices {
                 console.error(error);
                 alert('No profile to show.')
             })
+
     }
 }
 
