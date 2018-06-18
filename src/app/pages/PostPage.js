@@ -125,10 +125,14 @@ export class PostPage extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        {this.state.comments.map(comment => {
-                            return <SingleComment comment={comment} user={this.state.user} />
-                        })}
+
+                        <ul className="collection">
+                            {this.state.comments.map(comment => {
+                                return <SingleComment comment={comment} user={this.state.user} />
+                            })}
+                        </ul>
                     </div>
+
                 </div>
             </Fragment>
         )
