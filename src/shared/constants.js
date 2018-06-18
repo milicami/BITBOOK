@@ -6,6 +6,8 @@ const userEndpoint = 'http://bitbookapi.azurewebsites.net/api/users';
 const textPostEndpoint = 'http://bitbookapi.azurewebsites.net/api/TextPosts';
 const imagePostEndpoint = 'http://bitbookapi.azurewebsites.net/api/ImagePosts';
 const videoPostEndpoint = 'http://bitbookapi.azurewebsites.net/api/VideoPosts';
+const profileEndpoint = 'http://bitbookapi.azurewebsites.net/api/profile';
+
 
 const requestsHeader = {
     'Content-Type': 'application/json',
@@ -13,4 +15,4 @@ const requestsHeader = {
     'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
 }
 
-export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint }
+export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint, profileEndpoint }

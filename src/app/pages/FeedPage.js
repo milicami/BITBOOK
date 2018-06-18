@@ -50,14 +50,13 @@ export class FeedPage extends Component {
         }
     }
 
-    
     handleSubmit = (postBodyContent) => {
         let newPostPropertyType = this.state.newPostType;
 
         const newPost = {
             date: Date.now(),
             userId: 1,
-            userDisplayName: "Average Code",
+            userDisplayName: "NoReturn",
             type: this.state.newPostType,
             numOfComments: 0,
 

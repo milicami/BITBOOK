@@ -1,4 +1,4 @@
-import { userEndpoint, requestsHeader } from "../shared/constants";
+import { userEndpoint, requestsHeader, profileEndpoint } from "../shared/constants";
 import { get } from "./APIService";
 import { User } from "../entities/User";
 
@@ -16,6 +16,7 @@ class UsersServices {
             })
     }
 
+
     fetchUsers() {
         return get(userEndpoint)
         .then(users => {
@@ -27,6 +28,21 @@ class UsersServices {
             console.error(error);
             alert('No user to show.')
         })
+
+    fetchProfile() {
+        return get(profileEndpoint)
+            .then((profile) => {
+                return new User(profile.userId, profile.name, profile.email, profile.aboutShort, profile.about, profile.avatarUrl, profile.postsCount, profile.commentsCount)
+            })
+            .catch(error => {
+                console.error(error);
+                alert('No profile to show.')
+            })
+
     }
 }
+
+
+
+
 export const usersServices = new UsersServices;
