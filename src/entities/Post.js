@@ -10,16 +10,18 @@ export class Post {
 }
 
 export class TextPost extends Post {
+    static TYPE = 'text';
+
     constructor(id, date, userId, userDisplayName, type, commentsNum, text) {
         super(id, date, userId, userDisplayName, type, commentsNum)
 
         this.text = text;
     }
-
 }
 
-
 export class ImagePost extends Post {
+    static TYPE = 'image';
+
     constructor(id, date, userId, userDisplayName, type, commentsNum, imageUrl) {
         super(id, date, userId, userDisplayName, type, commentsNum)
 
@@ -30,6 +32,8 @@ export class ImagePost extends Post {
 
 
 export class VideoPost extends Post {
+    static TYPE = 'video';
+
     constructor(id, date, userId, userDisplayName, type, commentsNum, videoUrl) {
         super(id, date, userId, userDisplayName, type, commentsNum)
 
