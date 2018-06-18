@@ -9,6 +9,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { PostPage } from './pages/PostPage';
 import {PeoplePage} from "./pages/PeoplePage";
 import { ProfilePage } from './pages/ProfilePage';
+import { UserPage } from './pages/UserPage';
 
 export class App extends Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ export class App extends Component {
             {/* <Route path="/post/:id" component={PostPage} /> */}
             <Route path="/profile" component={ProfilePage} />
             <Route exact path="/people" component={PeoplePage} />
+            <Route exact path="/users/:id" component={UserPage} />
           </Switch>
         </main>
         <Footer />

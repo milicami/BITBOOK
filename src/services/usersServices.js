@@ -27,7 +27,7 @@ class UsersServices {
         .catch(error => {
             console.error(error);
             alert('No user to show.')
-        })
+        })}
 
     fetchProfile() {
         return get(profileEndpoint)
