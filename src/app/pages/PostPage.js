@@ -80,7 +80,6 @@ export class PostPage extends Component {
 
         if (this.state.inputValue === "") {
             event.preventDefault();
-            this.state.inputValue ? "" : "Input is required"
 
         } else {
 
@@ -116,10 +115,10 @@ export class PostPage extends Component {
                 <div className="container comments">
                     <div className="row">
                         <div className="input-field">
-                            <input type="text" id="autocomplete-input" className="autocomplete col s11" placeholder='Add your comment' onChange={this.handleChange} />
+                            <input type="text" id="autocomplete-input" className="autocomplete col s11" placeholder='Add your comment' onChange={this.handleChange} value={this.state.inputValue}/>
                             <label htmlFor="autocomplete-input" ></label>
                             <div className='col s1'>
-                                <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.loadNewComment}>SEND</button>
+                                <button className="btn waves-effect waves-light" type="submit" disabled={!this.state.inputValue} name="action" onClick={this.loadNewComment}>SEND</button>
                             </div>
                             <div className="col s3 color-red">{this.state.inputValue ? "" : "*Comment input is required"} </div>
                         </div>
