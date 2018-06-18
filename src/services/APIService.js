@@ -1,4 +1,5 @@
-import { requestsHeader } from "../shared/constants";
+
+import {requestsHeader} from '../shared/constants';
 
 
 export const get = (url) => {
