@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { postsServices } from '../../services/postsServices';
 import { FeedList } from '../components/Feed/FeedList';
-import { CreatePostButton } from '../components/Feed/CreatePostButton'
-import { CreatePostModal } from "../components/Modals/CreatePostModal"
-import M from "materialize-css"
+import { CreatePostButton } from '../components/Feed/CreatePostButton';
+import { CreatePostModal } from "../components/Modals/CreatePostModal";
+import M from "materialize-css";
+import { TextPost } from '../../entities/Post';
 
 
 
@@ -16,10 +17,8 @@ export class FeedPage extends Component {
         })
     }
 
-
     componentDidMount() {
         this.loadPosts();
-        M.AutoInit();
     }
 
     loadPosts = () => {

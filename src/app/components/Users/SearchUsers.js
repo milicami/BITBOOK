@@ -6,7 +6,7 @@ export const SearchUsers = (props) => {
         <div className="container">
             <div className="row">
             <nav className="people-search">
-                <div class="nav-wrapper">
+                <div className="nav-wrapper">
                     <form>
                         <div className="input-field">
                             <input id="search" type="search" value={props.searchInputValue} onChange={props.handlerSearchUsers} required />
