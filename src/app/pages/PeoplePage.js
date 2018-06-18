@@ -39,11 +39,18 @@ export class PeoplePage extends Component {
           filteredUsers: filteredUsers
         });
       }
+
+      closeSearch = (event) => {
+          this.setState ({
+              inputValue: '',
+          });
+          this.loadUsers();
+      }
     
     render() {
         return (
             <Fragment>
-                <SearchUsers searchInputValue={this.state.inputValue} handlerSearchUsers={this.handlerSearchUsers} />
+                <SearchUsers searchInputValue={this.state.inputValue} handlerSearchUsers={this.handlerSearchUsers} closeSearch={this.closeSearch}/>
                 <UserList users={this.state.filteredUsers} />
             </Fragment>
         )

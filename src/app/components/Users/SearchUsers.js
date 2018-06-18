@@ -9,7 +9,7 @@ export const SearchUsers = (props) => {
                     <div className="input-field">
                         <input id="search" type="search" value={props.searchInputValue} onChange={props.handlerSearchUsers} required />
                         <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                        <i className="material-icons">close</i>
+                        <i className="material-icons" onClick={props.closeSearch}>close</i>
                     </div>
                 </form>
             </div>
