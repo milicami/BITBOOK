@@ -8,7 +8,7 @@ export const CreatePostButton = (props) => {
 
         <div className="fixed-action-btn">
             <a className="btn-floating btn-large red">
-            <i className="material-icons">add</i>
+                <i className="material-icons">add</i>
             </a>
             <ul>
                 <li><button data-target="modalPost" onClick = {props.handlerPostType} className="btn-floating"><i className="material-icons #4fc3f7 light-blue lighten-2  modal-trigger">short_text</i></button ></li>

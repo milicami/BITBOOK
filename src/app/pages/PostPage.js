@@ -6,7 +6,7 @@ import { SingleImagePost } from '../components/Post/SingleImagePost';
 import { SingleComment } from '../components/Post/SingleComment';
 import { commentsServices } from '../../services/commentsServices';
 import { usersServices } from '../../services/usersServices';
-
+import postPage from '../../css/postPage.css'
 
 export class PostPage extends Component {
 
@@ -72,23 +72,29 @@ export class PostPage extends Component {
         });
     }
 
-    loadNewComment = () => {
+    loadNewComment = (event) => {
         const comment = {
             body: this.state.inputValue,
             postId: this.state.post.id,
         }
 
-        commentsServices.addComment(comment)
-            .then((response) => {
-                return response.json()
-            })
-            .then(newPost => {
-                this.loadComments(this.props.match.params.id)
-                this.setState({
-                    inputValue: ''
-                });
-            })
+        if (this.state.inputValue === "") {
+            event.preventDefault();
+            this.state.inputValue ? "" : "Input is required"
 
+        } else {
+
+            commentsServices.addComment(comment)
+                .then((response) => {
+                    return response.json()
+                })
+                .then(newPost => {
+                    this.loadComments(this.props.match.params.id)
+                    this.setState({
+                        inputValue: ''
+                    });
+                })
+        }
 
     }
 
@@ -115,14 +121,15 @@ export class PostPage extends Component {
                             <div className='col s1'>
                                 <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.loadNewComment}>SEND</button>
                             </div>
+                            <div className="col s3 color-red">{this.state.inputValue ? "" : "*Comment input is required"} </div>
                         </div>
                     </div>
+                    <div className="row">
+                        {this.state.comments.map(comment => {
+                            return <SingleComment comment={comment} user={this.state.user} />
+                        })}
+                    </div>
                 </div>
-                {this.state.comments.map(comment => {
-                    return <SingleComment comment={comment} user={this.state.user} />
-
-                })}
-                {/* {this.mapComments()} */}
             </Fragment>
         )
     }

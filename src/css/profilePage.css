@@ -1,0 +1,25 @@
+img.img {
+    display: block;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 6%;
+
+}
+
+.row {
+    text-align: center;
+
+}
+
+.comment-button {
+    background-color: rgb(216, 143, 131);
+    border-radius: 30px;
+    margin-bottom: 5%;
+    
+}
+.about-short {
+    margin-top: 6%;
+    margin-bottom: 10%
+}
