@@ -110,9 +110,10 @@ export class PostPage extends Component {
         }
         return (
             <Fragment>
+                <div className="container">
                 {this.state.post === null ? "" : this.displayPost()}
                 <br />
-                <div className="container comments">
+                {/* <div className="container comments"> */}
                     <div className="row">
                         <div className="input-field">
                             <input type="text" id="autocomplete-input" className="autocomplete col s11" placeholder='Add your comment' onChange={this.handleChange} value={this.state.inputValue}/>
@@ -131,6 +132,8 @@ export class PostPage extends Component {
                             })}
                         </ul>
                     </div>
+
+                {/* </div> */}
 
                 </div>
             </Fragment>
