@@ -1,6 +1,7 @@
 import React from 'react';
 
 class ValidationService {
+    
     validatePost(inputValue, typeValue) {
         if (!this.hasValidPostType(typeValue)) {
             return { error: "Post type is not supported!" };
