@@ -13,9 +13,12 @@ export class ProfilePage extends Component {
         this.state = {
             profile: null,
             showModal: false,
-            name:'',
-            about:'',
-            photo:''
+            name: '',
+            about: '',
+            photo: '',
+            switchUpload: true,
+            switchClass: 'show',
+            error: null
         }
     }
 
@@ -53,9 +56,18 @@ export class ProfilePage extends Component {
     }
 
     handlePhoto = (event) => {
+
         this.setState({
             photo: event.target.value
         })
+        
+        this.setState({ error: null });
+        const valObj = validationService.validateImageForm(event.target.value)
+    
+        if (valObj.error) {
+            this.setState({ error: valObj.error });
+            return;
+        }
     }
 
     handleClose = (event) => {
@@ -65,16 +77,14 @@ export class ProfilePage extends Component {
 
     closeModal = () => {
         this.setState({
-            showModal:false,
+            showModal: false,
             name: '',
-            about:'',
-            photo:''
+            about: '',
+            photo: ''
         })
-        // validationService.validateImageForm(this.state.photo)
     }
 
     updateUserProfile = (name, about, photo) => {
-        // validationService.validateImageForm(this.state.photo);
 
         usersServices.updateUserProfile(this.state.name, this.state.about, this.state.photo)
             .then(() => {
@@ -83,7 +93,23 @@ export class ProfilePage extends Component {
             });
     }
 
-   
+    handlePhotoUpload = (event) => {
+
+        if (this.state.switchUpload) {
+            this.setState({
+                switchClass: 'hide',
+                switchUpload: false
+            })
+            return this.state.switchClass;
+        } else {
+            this.setState({
+                switchClass: 'show',
+                switchUpload: true
+            })
+            return;
+        }
+    }
+
 
     render() {
 
@@ -94,6 +120,7 @@ export class ProfilePage extends Component {
         }
         return (
             <Fragment>
+
                 <div className='container'>
                     <div className='col s12 center'>
                         <div className='row'>
@@ -104,10 +131,10 @@ export class ProfilePage extends Component {
                         <div className='row profile-name'>
                             <h4>{profileInfo.name}</h4>
                         </div>
-                        
-                        <EditProfileModal showModal = {this.state.showModal} name={this.state.name} about={this.state.about} photo={this.state.photo} handleUsername={this.handleUsername} handleAbout={this.handleAbout} handlePhoto={this.handlePhoto} updateUserProfile={this.updateUserProfile} handleClose={this.handleClose}/>
 
-                        <a className="waves-effect waves-light btn modal-trigger " onClick={this.handleOpenModal} >Edit Profile</a>
+                        <EditProfileModal showModal={this.state.showModal} name={this.state.name} about={this.state.about} photo={this.state.photo} handleUsername={this.handleUsername} handleAbout={this.handleAbout} handlePhoto={this.handlePhoto} updateUserProfile={this.updateUserProfile} handleClose={this.handleClose} switchUpload={this.state.switchUpload} switchClass={this.state.s} handlePhotoUpload={this.handlePhotoUpload} error={this.state.error} uploadPhoto={this.uploadPhoto}/>
+
+                        <a className="waves-effect waves-light btn modal-trigger comment-button" onClick={this.handleOpenModal} >Edit Profile</a>
                         <div className='row'>
                             <p className='about-short'>
                                 {profileInfo.aboutShort}
@@ -123,7 +150,6 @@ export class ProfilePage extends Component {
                         </div>
                     </div>
                 </div>
-
 
             </Fragment>
         );

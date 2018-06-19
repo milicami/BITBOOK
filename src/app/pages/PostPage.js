@@ -36,9 +36,9 @@ export class PostPage extends Component {
 
     loadComments = (commentId) => {
         commentsServices.fetchComments(commentId)
-            .then(comments => {
+            .then(comment => {
                 this.setState({
-                    comments: comments
+                    comments: comment
                 })
             })
     }

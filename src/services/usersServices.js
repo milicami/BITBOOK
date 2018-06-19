@@ -1,5 +1,5 @@
-import { userEndpoint, requestsHeader, profileEndpoint, userEditProfileEndpoint } from "../shared/constants";
-import { get, put } from "./APIService";
+import { userEndpoint, requestsHeader, profileEndpoint, userEditProfileEndpoint, photoUploadEndpoint } from "../shared/constants";
+import { get, put, post } from "./APIService";
 import { User } from "../entities/User";
 
 class UsersServices {
@@ -27,7 +27,7 @@ class UsersServices {
                 console.error(error);
                 alert('No user to show.')
             })
-
+    }
 
     fetchProfile() {
         return get(profileEndpoint)
@@ -38,6 +38,7 @@ class UsersServices {
                 console.error(error);
                 alert('No profile to show.')
             })
+
     }
 
     updateUserProfile(name, about, photo) {
@@ -54,9 +55,26 @@ class UsersServices {
 
         return put(userEditProfileEndpoint, updateData)
     }
+
+    uploadUserPicture(photo) {
+        
+        const formData = new FormData();
+        formData.append('file', photo)
+
+        return fetch(photoUploadEndpoint, {
+            body: formData,
+            headers: {
+                'Key': 'bitbookdev',
+                'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
+            },
+            method: 'POST'
+        })
+            .then(response => response.json())
+
+
+    }
+
 }
-
-
 
 
 export const usersServices = new UsersServices;
