@@ -1,5 +1,5 @@
-import { userEndpoint, requestsHeader, profileEndpoint, userEditProfileEndpoint } from "../shared/constants";
-import { get, put } from "./APIService";
+import { userEndpoint, requestsHeader, profileEndpoint, userEditProfileEndpoint, registerEndpoint } from "../shared/constants";
+import { get, post, post1, put } from "./APIService";
 import { User } from "../entities/User";
 
 class UsersServices {
@@ -38,6 +38,10 @@ class UsersServices {
                 console.error(error);
                 alert('No profile to show.')
             })
+    }
+
+    registerUser = (newUser) => {
+        return post1(registerEndpoint, newUser)
     }
 
     updateUserProfile(name, about, photo) {

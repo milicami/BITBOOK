@@ -1,4 +1,4 @@
-import {requestsHeader, userEditProfileEndpoint} from '../shared/constants';
+import {requestsHeader, userEditProfileEndpoint, registerEndpoint, registerHeader } from '../shared/constants';
 
 
 export const get = (url) => {
@@ -37,4 +37,16 @@ export const put = (url, data) => {
         headers: requestsHeader,
     })
       
+}
+
+export const post1 = (url, newContent) => {
+
+    const postData = {
+        method: 'POST',
+        body: JSON.stringify(newContent),
+        headers: registerHeader,
+
+    }
+    return fetch(url, postData)
+     
 }

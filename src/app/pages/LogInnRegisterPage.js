@@ -7,7 +7,6 @@ export class LogInnRegisterPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fullNameInput:"",
             loginTab: true
         }
     }
