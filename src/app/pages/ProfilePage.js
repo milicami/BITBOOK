@@ -61,7 +61,8 @@ export class ProfilePage extends Component {
     handlePhoto = (event) => {
 
         this.setState({
-            photo: event.target.files[0]
+            photo: event.target.value
+            // photo: event.target.files[0]
         })
         
         this.setState({ error: null });
