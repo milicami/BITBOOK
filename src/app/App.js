@@ -10,6 +10,7 @@ import { PostPage } from './pages/PostPage';
 import {PeoplePage} from "./pages/PeoplePage";
 import { ProfilePage } from './pages/ProfilePage';
 import { UserPage } from './pages/UserPage';
+import { LogInnRegisterPage } from './pages/LogInnRegisterPage';
 
 export class App extends Component {
   componentDidMount() {
@@ -22,6 +23,7 @@ export class App extends Component {
         <Header />
         <main>
           <Switch>
+            <Route exact path="/" component={LogInnRegisterPage}/>
             <Route exact path="/feed" component={FeedPage} />
             <Route path="/post/:type/:id" component={PostPage} />
             {/* <Route path="/post/:id" component={PostPage} /> */}

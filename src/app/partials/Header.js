@@ -16,7 +16,7 @@ export const Header = () => {
             <nav>
                 <div className="nav-wrapper">
                     <div className='container'>
-                        <span className='center'><Link to='/feed'>BitBook</Link></span>
+                        <span className='center'><Link to='/'>BitBook</Link></span>
                         <a href="!#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             <li><Link to='/feed'>Feed</Link></li>
