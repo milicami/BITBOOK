@@ -1,3 +1,8 @@
 .color-red {
     color: red;
 }
+
+.singleImage {
+  display: block;
+  width: 100%;
+}
