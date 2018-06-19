@@ -6,10 +6,34 @@ import { usersServices } from '../../../services/usersServices';
 export class EditProfileModal extends Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            imageSrc: this.props.photoUrl
+        }
     }
 
-
+    // onImageUpload = (event) => {
+    //     event.preventDefault();
+    //     const { photoUrl, onCloseAddModal, onImgFileUpload, inputFileValue } = this.props;
+    //     if (inputFileValue) {
+    //         onImgFileUpload(event)
+    //             .then(photoUrl => {
+    //                 this.setState({
+    //                     imageSrc: photoUrl
+    //                 })
+    //             })
+    //     } else {
+    //         this.setState({
+    //             imageSrc: photoUrl
+    //         })
+    //     }
+       
+    // }
     
+
+
+
+
 
     render() {
         if (!this.props.showModal) {
@@ -45,7 +69,7 @@ export class EditProfileModal extends Component {
                                     from file
                                 </label>
                             </div>
-                            <button onClick={this.props.imageFileUpload}> Upload photo </button>
+                            <button onClick={this.props.onImageUpload}> Upload photo </button>
                         </form>
 
                         <div className="modal-footer">
