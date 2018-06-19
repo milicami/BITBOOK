@@ -16,13 +16,13 @@ export const get = (url) => {
 }
 
 
-export const post = (url, newContent) => {
+export const post = (url, newContent, headers = requestsHeader) => {
 
     const postData = {
         method: 'POST',
         body: JSON.stringify(newContent),
-        headers: requestsHeader,
-
+        headers: headers,
+        mode: 'cors'
     }
     return fetch(url, postData)
      

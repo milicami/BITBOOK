@@ -19,6 +19,11 @@ const requestsHeader = {
     'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
 }
 
+const registerPostHeaders = {
+    'Content-Type': 'application/json',
+    'Key': 'bitbookdev',
+}
 
 
-export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint, profileEndpoint, userEditProfileEndpoint, registerEndpoint }
+
+export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint, profileEndpoint, userEditProfileEndpoint, registerEndpoint, registerPostHeaders }

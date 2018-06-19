@@ -24,7 +24,8 @@ export class Register extends Component {
         const email = this.state.email;
         const password = this.state.password;
 
-        const newUserObj = {
+        const newUserObj = { 
+            username: "test3",
             name : name,
             email: email,
             password : password
