@@ -19,16 +19,6 @@ const requestsHeader = {
     'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
 }
 
-const registerHeader = {
-    "pragma": "no-cache",
-    "date": "Tue, 19 Jun 2018 15:46:47 GMT",
-    "server": "Microsoft-IIS/10.0",
-    "x-aspnet-version": "4.0.30319",
-    "x-powered-by": "ASP.NET",
-    "cache-control": "no-cache",
-    "content-length": "0",
-    "expires": "-1",
-    "content-type": null
-}
 
-export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint, profileEndpoint, userEditProfileEndpoint, registerEndpoint, registerHeader }
+
+export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint, profileEndpoint, userEditProfileEndpoint, registerEndpoint }

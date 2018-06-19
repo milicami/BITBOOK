@@ -1,5 +1,5 @@
 import { userEndpoint, requestsHeader, profileEndpoint, userEditProfileEndpoint, registerEndpoint } from "../shared/constants";
-import { get, post, post1, put } from "./APIService";
+import { get, post, put } from "./APIService";
 import { User } from "../entities/User";
 
 class UsersServices {
@@ -41,7 +41,7 @@ class UsersServices {
     }
 
     registerUser = (newUser) => {
-        return post1(registerEndpoint, newUser)
+        return post(registerEndpoint, newUser)
     }
 
     updateUserProfile(name, about, photo) {
