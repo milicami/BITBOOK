@@ -3,6 +3,7 @@ import { usersServices } from '../../services/usersServices';
 import '../../css/profilePage.css'
 import { EditProfileModal } from '../components/Modals/EditProfileModal';
 import M from "materialize-css";
+import { validationService } from '../../services/validationService';
 
 
 export class ProfilePage extends Component {
@@ -64,11 +65,17 @@ export class ProfilePage extends Component {
 
     closeModal = () => {
         this.setState({
-            showModal:false
+            showModal:false,
+            name: '',
+            about:'',
+            photo:''
         })
+        // validationService.validateImageForm(this.state.photo)
     }
 
     updateUserProfile = (name, about, photo) => {
+        // validationService.validateImageForm(this.state.photo);
+
         usersServices.updateUserProfile(this.state.name, this.state.about, this.state.photo)
             .then(() => {
                 this.closeModal();
