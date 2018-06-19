@@ -5,7 +5,7 @@ import { CreatePostButton } from '../components/Feed/CreatePostButton';
 import { CreatePostModal } from "../components/Modals/CreatePostModal";
 import M from "materialize-css";
 import { TextPost } from '../../entities/Post';
-
+import { FilterPostsDropDown } from "../components/Feed/FilterPostsDropDown"
 
 
 export class FeedPage extends Component {
@@ -14,6 +14,7 @@ export class FeedPage extends Component {
         this.state = ({
             posts: [],
             newPostType: '',
+            filteredPosts: [],
         })
     }
 
@@ -26,7 +27,8 @@ export class FeedPage extends Component {
         postsServices.fetchPosts()
             .then(data => {
                 this.setState({
-                    posts: data
+                    posts: data,
+                    filteredPosts: data
                 })
             }).catch(message => {
                 console.log(message)
@@ -47,6 +49,38 @@ export class FeedPage extends Component {
             this.setState({
                 newPostType: 'videoUrl'
             });
+        }
+    }
+
+    filterPosts = (event) => {
+        if (event.target.value === 'text') {
+            const filteredPosts = this.state.posts.filter((post) => {
+                return post.type.includes('text');
+            })
+            this.setState({
+                filteredPosts: filteredPosts
+            });
+
+        } else if (event.target.value === 'imageUrl') {
+            const filteredPosts = this.state.posts.filter((post) => {
+                return post.type.includes('image');
+            })
+            this.setState({
+                filteredPosts: filteredPosts
+            });
+            
+        } else if (event.target.value === 'videoUrl') {
+            const filteredPosts = this.state.posts.filter((post) => {
+                return post.type.includes('video');
+            })
+            this.setState({
+                filteredPosts: filteredPosts
+            }); 
+        } else if (event.target.value === "allPosts") {
+            const filteredPosts = this.state.posts
+            this.setState({
+                filteredPosts: filteredPosts
+            })
         }
     }
 
@@ -92,9 +126,18 @@ export class FeedPage extends Component {
     render() {
         return (
             <Fragment>
-                <FeedList posts={this.state.posts} />
-                <CreatePostModal newPostType={this.state.newPostType} handleSubmit={this.handleSubmit} loadPosts={this.loadPosts} handleClose={this.handleClose} />
-                <CreatePostButton handlerPostType={this.handlerPostType} />
+                <div className="container">
+                    <div className="row">
+                        <div className="col s10">
+                            <FeedList posts={this.state.filteredPosts} />
+                        </div>
+                        <div className="col s2">
+                            <FilterPostsDropDown filterPosts={this.filterPosts} />
+                            <CreatePostModal newPostType={this.state.newPostType} handleSubmit={this.handleSubmit} loadPosts={this.loadPosts} handleClose={this.handleClose} />
+                            <CreatePostButton handlerPostType={this.handlerPostType} />
+                        </div>
+                    </div>
+                </div>
             </Fragment>
         );
     }

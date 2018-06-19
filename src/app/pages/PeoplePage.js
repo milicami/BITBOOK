@@ -32,9 +32,9 @@ export class PeoplePage extends Component {
         this.setState({
             inputValue: event.target.value
         });
-        let inputValue = this.state.inputValue.toLowerCase();
         const filteredUsers = this.state.users.filter((user) => {
-            return user.name.includes(event.target.value)
+            let userName = user.name.toLowerCase()
+            return userName.match(event.target.value.toLowerCase())
         });
         this.setState({
             filteredUsers: filteredUsers

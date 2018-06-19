@@ -26,17 +26,19 @@ export class CreatePostModal extends Component {
         this.setState({
             inputValue: event.target.value,
         });
-    };
 
-    onCreate = (event) => {
-        event.preventDefault();
+        this.setState({ error: null });
 
-        const valObj = validationService.validatePost(this.state.inputValue, this.props.newPostType)
+        const valObj = validationService.validatePost(event.target.value, this.props.newPostType)
 
         if (valObj.error) {
             this.setState({ error: valObj.error });
             return;
         }
+    };
+
+    onCreate = (event) => {
+        event.preventDefault();
 
         this.props.handleSubmit(this.state.inputValue);
         this.setState({ inputValue: "" });
@@ -94,7 +96,7 @@ export class CreatePostModal extends Component {
                         {error && <p>{error}</p>}
                     </div>
                     <div className="modal-footer">
-                        <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={this.onCreate}>POST</a>
+                        <a href="#!" className="modal-close waves-effect waves-green btn-flat" disabled={this.state.error || !this.state.inputValue} onClick={this.onCreate}>POST</a>
                     </div>
                 </div>
             </div>
