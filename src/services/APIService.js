@@ -31,14 +31,10 @@ export const post = (url, newContent) => {
 export const put = (url, data) => {
 
     return fetch(url, {
-        // cache: 'no-cache',
-        // credentials: 'same-origin',
+       
         method: 'PUT',
         body: JSON.stringify(data),
         headers: requestsHeader,
-        // mode: 'cors'
     })
-        .then(response => {
-            return response.json()
-        })
+      
 }

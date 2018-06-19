@@ -45,12 +45,10 @@ export class CreatePostModal extends Component {
     renderTextForm = () => {
         return (
             <Fragment>
-
                 <h4>New  Post</h4>
                 <p>Post content</p>
                 <input id="post" type="text" name="newPost" className="validate" value={this.state.inputValue}
                     onChange={this.handleChange} />
-
             </Fragment>
         )
     }
@@ -58,7 +56,6 @@ export class CreatePostModal extends Component {
     renderImageForm = () => {
         return (
             <Fragment>
-
                 <h4>New Image Post</h4>
                 <p>Image link</p>
                 <input id="image" type="text" name="newImage" className="validate" value={this.state.inputValue}

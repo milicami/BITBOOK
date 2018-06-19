@@ -18,15 +18,15 @@ class UsersServices {
 
     fetchUsers() {
         return get(userEndpoint)
-        .then(users => {
-           return users.map(user => {
-                return new User(user.id, user.name, "", user.aboutShort, "", user.avatarUrl, "", "", user.lastPostDate)
+            .then(users => {
+                return users.map(user => {
+                    return new User(user.id, user.name, "", user.aboutShort, "", user.avatarUrl, "", "", user.lastPostDate)
+                })
             })
-        })
-        .catch(error => {
-            console.error(error);
-            alert('No user to show.')
-        })
+            .catch(error => {
+                console.error(error);
+                alert('No user to show.')
+            })
     }
 
     fetchProfile() {
@@ -41,16 +41,18 @@ class UsersServices {
     }
 
     updateUserProfile(name, about, photo) {
-                const updateData = {
-                    name: name,
-                    email: 'bitstudent@gmail.com',
-                    aboutShort: '',
-                    avatarUrl: photo,
-                    postsCount: 0,
-                    commentsCount: 0
-                }
 
-                return put(userEditProfileEndpoint, updateData)
+        const updateData = {
+            name: name,
+            email: 'bitStudent@gmail.com',
+            aboutShort: about,
+            about: about,
+            avatarUrl: photo,
+            postsCount: 0,
+            commentsCount: 0
+        }
+
+        return put(userEditProfileEndpoint, updateData)
     }
 }
 
