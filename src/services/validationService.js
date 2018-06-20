@@ -48,14 +48,7 @@ class ValidationService {
         return { error: "Upload youtube file format." }
     }
 
-    isUserLogged = () => {
-        let sessionId = localStorage.getItem("sessionId");
-         if (sessionId) {
-             return true;
-         } else {
-             return false;
-         }
-    };
+  
 }
 
 export const validationService = new ValidationService;

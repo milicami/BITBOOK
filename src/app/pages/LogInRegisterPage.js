@@ -3,7 +3,7 @@ import loginnregister from "../../css/loginnregister.css"
 import { Login } from '../components/LoginRegister/Login';
 import { Register } from '../components/LoginRegister/Register'
 
-export class LogInnRegisterPage extends Component {
+export class LogInRegisterPage extends Component {
     constructor(props) {
         super(props);
         this.state = {

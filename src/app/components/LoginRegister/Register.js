@@ -8,7 +8,8 @@ export class Register extends Component {
                 username: "",
                 name: "",
                 email: "",
-                password: ""
+                password: "",
+                error: ""
         }
     }
 
@@ -34,9 +35,13 @@ export class Register extends Component {
         }
         usersServices.registerUser(newUserObj)
         .then(response => {
-            console.log(response)
             return response.json()
         })
+        .then(response => {
+            if (response.error) {
+                this.setState({error: response.error.message})
+            }
+        });
 
         this.setState({
             username: "",
@@ -52,6 +57,7 @@ export class Register extends Component {
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s12">
+                        {this.state.error}
                             <input id="name" type="text" className="validate" name="name" value={this.state.name} onChange={this.handleChange} />
                             <label for="name">Full Name</label>
                         </div>

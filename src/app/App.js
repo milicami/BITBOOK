@@ -10,8 +10,8 @@ import { PostPage } from './pages/PostPage';
 import { PeoplePage } from "./pages/PeoplePage";
 import { ProfilePage } from './pages/ProfilePage';
 import { UserPage } from './pages/UserPage';
-import { LogInnRegisterPage } from './pages/LogInnRegisterPage';
-import { validationService } from '../services/validationService';
+import { LogInRegisterPage } from './pages/LogInRegisterPage';
+import { authService } from '../services/authService';
 
 export class App extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export class App extends Component {
         <main>
 
           {
-            validationService.isUserLogged() ?
+            authService.isUserLogged() ?
               <Switch>
                 <Route exact path="/feed" component={FeedPage} />
                 <Route path="/post/:type/:id" component={PostPage} />
@@ -45,7 +45,7 @@ export class App extends Component {
 
               :
               <Switch>
-                <Route exact path="/" component={LogInnRegisterPage} />
+                <Route exact path="/" component={LogInRegisterPage} />
                <Redirect from='/' to='/' />
               </Switch>
           }
