@@ -24,7 +24,6 @@ export const FeedList = (props) => {
                                 return <VideoPost post={post} key={key} />;
                             default:
                                 return <p>not valid type of input</p>
-
                         }
                     }))}
 

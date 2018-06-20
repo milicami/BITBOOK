@@ -14,13 +14,6 @@ export class ProfilePage extends Component {
         this.state = {
             profile: null,
             showModal: false,
-            // name: '',
-            // about: '',
-            // photo: '',
-            // switchUpload: true,
-            // error: null,
-            // inputFileValue: null
-
         }
     }
 
@@ -48,7 +41,7 @@ export class ProfilePage extends Component {
         event.preventDefault();
         this.setState({
             showModal: true
-           
+
         })
     }
 
@@ -58,10 +51,10 @@ export class ProfilePage extends Component {
             showModal: false,
             photo: ''
         })
-        
+
     }
-    
-    
+
+
     render() {
         const profile = this.state.profile;
 
@@ -83,25 +76,10 @@ export class ProfilePage extends Component {
 
                         <EditProfileModal
                             showModal={this.state.showModal}
-                            // name={this.state.name}
-                            // about={this.state.about}
-                            // photo={this.state.photo}
-                            // handleUsername={this.handleUsername}
-                            // handleAbout={this.handleAbout}
-                            // handlePhoto={this.handlePhoto}
-                            // updateUserProfile={this.updateUserProfile}
                             handleClose={this.handleClose}
-                            // switchUpload={this.state.switchUpload}
-                            // handlePhotoUpload={this.handlePhotoUpload}
-                            // error={this.state.error}
-                            // uploadPhoto={this.uploadPhoto}
-                            // inputFileValue={this.state.inputFileValue}
-                            // onImgFileChange={this.onImgFileChange}
-                            // onImgFileUpload={this.onImgFileUpload} 
                             profile={this.state.profile}
                             updateUserProfile={this.updateUserProfile}
-                            />
-
+                        />
                         <a className="waves-effect waves-light btn modal-trigger comment-button" onClick={this.handleOpenModal}>Edit Profile</a>
                         <div className='row'>
                             <p className='about-short'>{profile.aboutShort}</p>

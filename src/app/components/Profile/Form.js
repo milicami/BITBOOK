@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { validationService } from '../../../services/validationService';
 import { uploadServices } from '../../../services/uploadServices';
+import '../../../css/profilePage.css';
 
 export class Form extends Component {
     constructor(props) {
@@ -74,7 +75,7 @@ export class Form extends Component {
         this.props.handleClose(event);
     }
 
-    
+
 
     render() {
         return (
@@ -84,24 +85,24 @@ export class Form extends Component {
                 <br />
                 <div> About </div>
                 <input type="text" value={this.state.about} placeholder={this.props.profile.aboutShort} onChange={this.handleAbout} />
-                <div> Upload photo </div>
+                <div className=" upload-photo"> Upload photo </div>
 
                 {this.state.switchUpload
                     ? <input type="text" value={this.state.photo} placeholder="photo url" onChange={this.handlePhoto} />
                     : <input type="file" onChange={this.onImgFileChange} />
                 }
 
-                <div className="switch">
+                <div className="switch type-upload">
                     <label>
                         from url
-                    <input type="checkbox" value={this.state.switchUpload} onClick={this.switchSourceUpload} />
+                        <input type="checkbox" value={this.state.switchUpload} onClick={this.switchSourceUpload} />
                         <span className="lever"></span>
                         from file
-                </label>
+                     </label>
                 </div>
-                <button className="comment-button" onClick={this.onImgFileUpload}> Upload photo </button>
+                <button className="comment-button upload-button" onClick={this.onImgFileUpload}> Upload photo </button>
                 <div className="modal-footer">
-                    <button className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.props.handleClose}>Close</button>
+                    <button className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.props.handleClose}>Cancel</button>
                     <button
                         className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.onSubmit}
                         disabled={this.state.error || !this.state.photo}>
