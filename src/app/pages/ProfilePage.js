@@ -54,16 +54,11 @@ export class ProfilePage extends Component {
 
     handleClose = (event) => {
         event.preventDefault();
-        this.closeModal(event);
-        
-    }
-
-    closeModal = (event) => {
-        event.preventDefault();
         this.setState({
             showModal: false,
             photo: ''
         })
+        
     }
     
     
