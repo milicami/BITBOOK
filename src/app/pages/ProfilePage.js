@@ -30,7 +30,6 @@ export class ProfilePage extends Component {
     loadProfile = () => {
         usersServices.fetchProfile()
             .then(profile => {
-                // console.log(profile);
                 this.setState({
                     profile: profile
                 });
@@ -75,17 +74,16 @@ export class ProfilePage extends Component {
     handleClose = (event) => {
         event.preventDefault();
         this.closeModal();
+        this.handlePhotoUpload()
+        
     }
 
     closeModal = () => {
         this.setState({
             showModal: false,
-
-            // name: '',
-            // about: '',
             photo: ''
         })
-        this.handlePhotoUpload();
+        this.handlePhotoUpload()
     }
 
     updateUserProfile = (name, about, photo) => {
@@ -97,7 +95,6 @@ export class ProfilePage extends Component {
     }
 
     handlePhotoUpload = (event) => {
-
         if (this.state.switchUpload) {
             this.setState({
                 switchUpload: false
@@ -115,14 +112,12 @@ export class ProfilePage extends Component {
         })
     }
 
-
     onImgFileUpload = (event) => {
         const imgFile = this.state.inputFileValue;
 
         return usersServices.uploadUserPicture(imgFile)
             .then(photo => this.setState({ photo }));
     }
-
 
     render() {
 

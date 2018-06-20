@@ -21,9 +21,9 @@ export class EditProfileModal extends Component {
 
 
         return (
-            <div className="overlay">
-                <div id="modalPost" className="modal open" style={{ display: 'block', top: 150 }}>
-                    <div className="modal-content" style={{ width: '100%', height: '100%' }}>
+            <div className="overlay-modal">
+                <div id="modalPost" className="modal open modal-style" style={{ display: 'block', top: 100}}>
+                    <div className="modal-content">
                         <h4>Update Profile</h4>
 
                         <form>
