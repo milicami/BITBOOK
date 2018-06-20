@@ -7,13 +7,31 @@ import { FeedPage } from './pages/FeedPage';
 import M from "materialize-css"
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { PostPage } from './pages/PostPage';
-import {PeoplePage} from "./pages/PeoplePage";
+import { PeoplePage } from "./pages/PeoplePage";
 import { ProfilePage } from './pages/ProfilePage';
 import { UserPage } from './pages/UserPage';
 import { LogInnRegisterPage } from './pages/LogInnRegisterPage';
+import { validationService } from '../services/validationService';
 
 export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sessionId: false
+    }
+  }
+
+  hasSessionId = () => {
+    let sessionId = localStorage.getItem("sessionID");
+    if (sessionId) {
+      return this.setState({
+        sessionId: true
+      })
+    }
+  }
+
   componentDidMount() {
+    this.hasSessionId();
     // M.AutoInit();
   }
 
@@ -22,15 +40,26 @@ export class App extends Component {
       <Fragment>
         <Header />
         <main>
-          <Switch>
-            <Route exact path="/" component={LogInnRegisterPage}/>
-            <Route exact path="/feed" component={FeedPage} />
-            <Route path="/post/:type/:id" component={PostPage} />
-            {/* <Route path="/post/:id" component={PostPage} /> */}
-            <Route path="/profile" component={ProfilePage} />
-            <Route exact path="/people" component={PeoplePage} />
-            <Route exact path="/users/:id" component={UserPage} />
-          </Switch>
+
+          {
+            validationService.isUserLogged() ?
+              <Switch>
+                <Route exact path="/feed" component={FeedPage} />
+                <Route path="/post/:type/:id" component={PostPage} />
+                {/* <Route path="/post/:id" component={PostPage} /> */}
+                <Route path="/profile" component={ProfilePage} />
+                <Route exact path="/people" component={PeoplePage} />
+                <Route exact path="/users/:id" component={UserPage} />
+                <Redirect from='/' to='/feed' />
+              </Switch>
+
+              :
+              <Switch>
+                <Route exact path="/" component={LogInnRegisterPage} />
+                {/* <Redirect from='/' to='/' /> */}
+              </Switch>
+          }
+
         </main>
         <Footer />
       </Fragment>

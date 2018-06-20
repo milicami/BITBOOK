@@ -5,6 +5,7 @@ export class Register extends Component {
     constructor(props) {
         super(props)
         this.state = {
+                username: "",
                 name: "",
                 email: "",
                 password: ""
@@ -20,12 +21,13 @@ export class Register extends Component {
 
     handleRegister = (event) => {
         event.preventDefault()
+        const username = this.state.username;
         const name = this.state.name;
         const email = this.state.email;
         const password = this.state.password;
 
         const newUserObj = { 
-            username: "test3",
+            username: username,
             name : name,
             email: email,
             password : password
@@ -33,16 +35,16 @@ export class Register extends Component {
         usersServices.registerUser(newUserObj)
         .then(response => {
             console.log(response)
+            return response.json()
         })
 
-
         this.setState({
+            username: "",
             name: "",
             email: "",
             password: ""
         })
     }
-
 
     render() {
         return (
@@ -51,7 +53,11 @@ export class Register extends Component {
                     <div className="row">
                         <div className="input-field col s12">
                             <input id="name" type="text" className="validate" name="name" value={this.state.name} onChange={this.handleChange} />
-                            <label for="last_name">Full Name</label>
+                            <label for="name">Full Name</label>
+                        </div>
+                        <div className="input-field col s12">
+                            <input id="username" type="text" className="validate" name="username" value={this.state.username} onChange={this.handleChange} />
+                            <label for="username">Username</label>
                         </div>
                         <div className="input-field col s12">
                             <input id="email" type="email" className="validate" name="email" value={this.state.email} onChange={this.handleChange} />

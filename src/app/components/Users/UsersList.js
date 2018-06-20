@@ -24,7 +24,7 @@ export class UserList extends Component {
     render() {
         return (
             <div className="container">
-                <ul class="collection">
+                <ul className="collection">
                     {this.renderUsers()}
                 </ul>
             </div>

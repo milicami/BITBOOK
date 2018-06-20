@@ -9,7 +9,7 @@ const videoPostEndpoint = 'http://bitbookapi.azurewebsites.net/api/VideoPosts';
 const profileEndpoint = 'http://bitbookapi.azurewebsites.net/api/profile';
 const userEditProfileEndpoint = 'http://bitbookapi.azurewebsites.net/api/Profiles';
 const registerEndpoint = "http://bitbookapi.azurewebsites.net/api/register";
-
+const loginEndpoint = "http://bitbookapi.azurewebsites.net/api/login";
 
 
 
@@ -26,4 +26,4 @@ const registerPostHeaders = {
 
 
 
-export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint, profileEndpoint, userEditProfileEndpoint, registerEndpoint, registerPostHeaders }
+export { baseEndpoint, postEndpoint, requestsHeader, commentsEndpoint, userEndpoint, newCommentEndpoint, textPostEndpoint, imagePostEndpoint, videoPostEndpoint, profileEndpoint, userEditProfileEndpoint, registerEndpoint, registerPostHeaders, loginEndpoint }

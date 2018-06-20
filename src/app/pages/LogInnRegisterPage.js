@@ -23,6 +23,10 @@ export class LogInnRegisterPage extends Component {
         });
     }
 
+    onLogin = () => {
+        this.props.history.push('/feed');
+    }
+
     render() {
         return (
             <div className="container">
@@ -43,7 +47,7 @@ export class LogInnRegisterPage extends Component {
                                 <div className="row">
                                     <div className="col s12">
                                      {
-                                         this.state.loginTab ? <Login /> : <Register />
+                                         this.state.loginTab ? <Login onSuccessfulLogin={this.onLogin}/> : <Register />
                                      }
                                         
                                     </div>
