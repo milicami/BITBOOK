@@ -44,8 +44,6 @@ export class PostPage extends Component {
             })
     }
 
-
-
     displayPost = () => {
         switch (this.state.post.type) {
             case 'text':
@@ -55,7 +53,7 @@ export class PostPage extends Component {
             case 'video':
                 return <SingleVideoPost post={this.state.post} />
             default:
-                return <p>not valid type of input</p>
+                return <p>Invalid type of input</p>
         }
     }
 
@@ -76,7 +74,6 @@ export class PostPage extends Component {
             event.preventDefault();
 
         } else {
-
             commentsServices.addComment(comment)
                 .then((response) => {
                     return response.json()
@@ -91,8 +88,6 @@ export class PostPage extends Component {
 
     }
 
-
-
     render() {
 
         if (!this.state.comments) {
@@ -103,7 +98,6 @@ export class PostPage extends Component {
                 <div className="container">
                     {this.state.post === null ? "" : this.displayPost()}
                     <br />
-
                     <div className="row">
                         <div className="input-field">
                             <input type="text" id="autocomplete-input" className="autocomplete col s11" placeholder='Add your comment' onChange={this.handleChange} value={this.state.inputValue} />
@@ -115,20 +109,14 @@ export class PostPage extends Component {
                         </div>
                     </div>
                     <div className="row">
-
                         <ul className="collection">
-
 
                             {this.state.comments.map((comment, key) => {
                                 return <SingleComment comment={comment} key={key} />
                             })}
 
-
                         </ul>
                     </div>
-
-
-
                 </div>
             </Fragment>
         )

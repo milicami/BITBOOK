@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { usersServices } from '../../services/usersServices';
 import '../../css/profilePage.css'
-import { EditProfileModal } from '../components/Modals/EditProfileModal';
+import { EditProfileModal } from '../components/Profile/EditProfileModal';
 import M from "materialize-css";
 import { validationService } from '../../services/validationService';
+import { uploadServices } from '../../services/uploadServices';
 
 
 export class ProfilePage extends Component {
@@ -13,12 +14,12 @@ export class ProfilePage extends Component {
         this.state = {
             profile: null,
             showModal: false,
-            name: '',
-            about: '',
-            photo: '',
-            switchUpload: true,
-            error: null,
-            inputFileValue: null
+            // name: '',
+            // about: '',
+            // photo: '',
+            // switchUpload: true,
+            // error: null,
+            // inputFileValue: null
 
         }
     }
@@ -36,91 +37,37 @@ export class ProfilePage extends Component {
             })
     }
 
-    handleOpenModal = (event) => {
-        event.preventDefault();
-        this.setState({
-            showModal: true,
-            name: this.state.profile.name,
-            about:this.state.profile.about
-        })
-    }
-
-    handleUsername = (event) => {
-        this.setState({
-            name: event.target.value
-        })
-    }
-
-    handleAbout = (event) => {
-        this.setState({
-            about: event.target.value
-        })
-    }
-
-    handlePhoto = (event) => {
-        this.setState({
-            photo: event.target.value
-        })
-
-        this.setState({ error: null });
-        const valObj = validationService.validateImageForm(event.target.value)
-
-        if (valObj.error) {
-            this.setState({ error: valObj.error });
-            return;
-        }
-    }
-
-    handleClose = (event) => {
-        event.preventDefault();
-        this.closeModal();
-        this.handlePhotoUpload()
-        
-    }
-
-    closeModal = () => {
-        this.setState({
-            showModal: false,
-            photo: ''
-        })
-        this.handlePhotoUpload()
-    }
-
     updateUserProfile = (name, about, photo) => {
-        usersServices.updateUserProfile(this.state.name, this.state.about, this.state.photo)
+        usersServices.updateUserProfile(name, about, photo)
             .then(() => {
-                this.closeModal();
                 this.loadProfile();
             });
     }
 
-    handlePhotoUpload = (event) => {
-        if (this.state.switchUpload) {
-            this.setState({
-                switchUpload: false
-            })
-        } else {
-            this.setState({
-                switchUpload: true
-            })
-        }
-    }
-
-    onImgFileChange = (event) => {
+    handleOpenModal = (event) => {
+        event.preventDefault();
         this.setState({
-            inputFileValue: event.target.files[0]
+            showModal: true
+           
         })
     }
 
-    onImgFileUpload = (event) => {
-        const imgFile = this.state.inputFileValue;
-
-        return usersServices.uploadUserPicture(imgFile)
-            .then(photo => this.setState({ photo }));
+    handleClose = (event) => {
+        event.preventDefault();
+        this.closeModal(event);
+        
     }
 
+    closeModal = (event) => {
+        event.preventDefault();
+        this.setState({
+            showModal: false,
+            photo: ''
+        })
+    }
+    
+    
     render() {
-
         const profile = this.state.profile;
 
         if (profile === null) {
@@ -141,29 +88,28 @@ export class ProfilePage extends Component {
 
                         <EditProfileModal
                             showModal={this.state.showModal}
-                            name={this.state.name}
-                            about={this.state.about}
-                            photo={this.state.photo}
-                            handleUsername={this.handleUsername}
-                            handleAbout={this.handleAbout}
-                            handlePhoto={this.handlePhoto}
-                            updateUserProfile={this.updateUserProfile}
+                            // name={this.state.name}
+                            // about={this.state.about}
+                            // photo={this.state.photo}
+                            // handleUsername={this.handleUsername}
+                            // handleAbout={this.handleAbout}
+                            // handlePhoto={this.handlePhoto}
+                            // updateUserProfile={this.updateUserProfile}
                             handleClose={this.handleClose}
-                            switchUpload={this.state.switchUpload}
-                            handlePhotoUpload={this.handlePhotoUpload}
-                            error={this.state.error}
-                            uploadPhoto={this.uploadPhoto}
-                            inputFileValue={this.state.inputFileValue}
-                            onImgFileChange={this.onImgFileChange}
-                            onImgFileUpload={this.onImgFileUpload} 
+                            // switchUpload={this.state.switchUpload}
+                            // handlePhotoUpload={this.handlePhotoUpload}
+                            // error={this.state.error}
+                            // uploadPhoto={this.uploadPhoto}
+                            // inputFileValue={this.state.inputFileValue}
+                            // onImgFileChange={this.onImgFileChange}
+                            // onImgFileUpload={this.onImgFileUpload} 
                             profile={this.state.profile}
+                            updateUserProfile={this.updateUserProfile}
                             />
 
                         <a className="waves-effect waves-light btn modal-trigger comment-button" onClick={this.handleOpenModal}>Edit Profile</a>
                         <div className='row'>
-                            <p className='about-short'>
-                                {profile.aboutShort}
-                            </p>
+                            <p className='about-short'>{profile.aboutShort}</p>
                         </div>
                         <div className='row'>
                             <div className='col s12 m6'>
