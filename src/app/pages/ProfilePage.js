@@ -17,7 +17,6 @@ export class ProfilePage extends Component {
             about: '',
             photo: '',
             switchUpload: true,
-            switchClass: 'show',
             error: null,
             inputFileValue: null
 
@@ -31,6 +30,7 @@ export class ProfilePage extends Component {
     loadProfile = () => {
         usersServices.fetchProfile()
             .then(profile => {
+                // console.log(profile);
                 this.setState({
                     profile: profile
                 });
@@ -40,7 +40,9 @@ export class ProfilePage extends Component {
     handleOpenModal = (event) => {
         event.preventDefault();
         this.setState({
-            showModal: true
+            showModal: true,
+            name: this.state.profile.name,
+            about:this.state.profile.about
         })
     }
 
@@ -59,7 +61,6 @@ export class ProfilePage extends Component {
     handlePhoto = (event) => {
         this.setState({
             photo: event.target.value
-            // photo: event.target.files[0]
         })
 
         this.setState({ error: null });
@@ -79,10 +80,12 @@ export class ProfilePage extends Component {
     closeModal = () => {
         this.setState({
             showModal: false,
-            name: '',
-            about: '',
+
+            // name: '',
+            // about: '',
             photo: ''
         })
+        this.handlePhotoUpload();
     }
 
     updateUserProfile = (name, about, photo) => {
@@ -97,12 +100,10 @@ export class ProfilePage extends Component {
 
         if (this.state.switchUpload) {
             this.setState({
-                // switchClass: 'hide',
                 switchUpload: false
             })
         } else {
             this.setState({
-                // switchClass: 'show',
                 switchUpload: true
             })
         }
@@ -125,23 +126,22 @@ export class ProfilePage extends Component {
 
     render() {
 
-        const profileInfo = this.state.profile;
+        const profile = this.state.profile;
 
-        if (profileInfo === null) {
+        if (profile === null) {
             return <div> Loading profile </div>
         }
         return (
             <Fragment>
-
                 <div className='container'>
                     <div className='col s12 center'>
                         <div className='row'>
-                            {profileInfo.avatarUrl === ""
+                            {profile.avatarUrl === ""
                                 ? <img src="http://www.iglax.org/wp-content/uploads/2014/12/placeholder-Copy-11-1.png" className='responsive-img circle img' />
-                                : <img src={profileInfo.avatarUrl} className='responsive-img circle img' />}
+                                : <img src={profile.avatarUrl} className='responsive-img circle img' />}
                         </div>
                         <div className='row profile-name'>
-                            <h4>{profileInfo.name}</h4>
+                            <h4>{profile.name}</h4>
                         </div>
 
                         <EditProfileModal
@@ -155,31 +155,31 @@ export class ProfilePage extends Component {
                             updateUserProfile={this.updateUserProfile}
                             handleClose={this.handleClose}
                             switchUpload={this.state.switchUpload}
-                            // switchClass={this.state.switchClass}
                             handlePhotoUpload={this.handlePhotoUpload}
                             error={this.state.error}
                             uploadPhoto={this.uploadPhoto}
                             inputFileValue={this.state.inputFileValue}
                             onImgFileChange={this.onImgFileChange}
-                            onImgFileUpload={this.onImgFileUpload} />
+                            onImgFileUpload={this.onImgFileUpload} 
+                            profile={this.state.profile}
+                            />
 
-                        <a className="waves-effect waves-light btn modal-trigger comment-button" onClick={this.handleOpenModal} >Edit Profile</a>
+                        <a className="waves-effect waves-light btn modal-trigger comment-button" onClick={this.handleOpenModal}>Edit Profile</a>
                         <div className='row'>
                             <p className='about-short'>
-                                {profileInfo.aboutShort}
+                                {profile.aboutShort}
                             </p>
                         </div>
                         <div className='row'>
                             <div className='col s12 m6'>
-                                <button type="button" className="btn btn-light comment-button" ><i className="fas fa-circle"></i> {profileInfo.postsCount} Posts</button>
+                                <button type="button" className="btn btn-light comment-button" ><i className="fas fa-circle"></i> {profile.postsCount} Posts</button>
                             </div>
                             <div className='col s12 m6'>
-                                <button type="button" className="btn btn-light comment-button"><i className="fas fa-circle"></i> {profileInfo.commentsCount} Comments</button>
+                                <button type="button" className="btn btn-light comment-button"><i className="fas fa-circle"></i> {profile.commentsCount} Comments</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </Fragment>
         );
     }

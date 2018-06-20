@@ -7,32 +7,7 @@ export class EditProfileModal extends Component {
     constructor(props) {
         super(props)
 
-        // this.state = {
-        //     imageSrc: this.props.photoUrl
-        // }
     }
-
-    // onImageUpload = (event) => {
-    //     event.preventDefault();
-    //     const { photoUrl, onCloseAddModal, onImgFileUpload, inputFileValue } = this.props;
-    //     if (inputFileValue) {
-    //         onImgFileUpload(event)
-    //             .then(photoUrl => {
-    //                 this.setState({
-    //                     imageSrc: photoUrl
-    //                 })
-    //             })
-    //     } else {
-    //         this.setState({
-    //             imageSrc: photoUrl
-    //         })
-    //     }
-       
-    // }
-    
-
-
-
 
 
     render() {
@@ -41,9 +16,8 @@ export class EditProfileModal extends Component {
         }
 
         this.props.switchUpload
-        ? <input type="file" value={this.props.photo} onChange={this.props.handlePhoto} /> 
-        : <input type="text" value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} />
-
+            ? <input type="file" value={this.props.photo} onChange={this.props.handlePhoto} />
+            : <input type="text" value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} />
 
 
         return (
@@ -54,18 +28,17 @@ export class EditProfileModal extends Component {
 
                         <form>
                             <div> Username </div>
-                            <input type="text" value={this.props.name} placeholder="enter new username" onChange={this.props.handleUsername} />
+                            <input type="text" value={this.props.name} placeholder={this.props.profile.name} onChange={this.props.handleUsername} />
                             <br />
                             <div> About </div>
-                            <input type="text" value={this.props.about} placeholder="enter description" onChange={this.props.handleAbout} />
+                            <input type="text" value={this.props.about} placeholder={this.props.profile.aboutShort} onChange={this.props.handleAbout} />
                             <div> Upload photo </div>
 
-                           { this.props.switchUpload
-                                ?   <input type="text" className={this.props.switchClass} disable value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} /> :   <input type="file" className={this.props.switchClass}  onChange={this.props.onImgFileChange} /> 
+                            {this.props.switchUpload
+                                ? <input type="text" value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} />
+                                : <input type="file" onChange={this.props.onImgFileChange} />
                             }
-                            
-                            {/* <input type="file" className={this.props.switchClass} value={this.props.photo} onChange={this.props.handlePhoto} />
-                            <input type="text" className={this.props.switchClass} value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} /> */}
+
                             <div className="switch">
                                 <label>
                                     from url
@@ -79,7 +52,11 @@ export class EditProfileModal extends Component {
 
                         <div className="modal-footer">
                             <button className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.props.handleClose}>Close</button>
-                            <button className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.props.updateUserProfile} disabled={this.props.error || !this.props.photo} >Update</button>
+                            <button
+                                className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.props.updateUserProfile}
+                                disabled={this.props.error || !this.props.photo}>
+                                Update
+                            </button>
                         </div>
                     </div>
                 </div>
