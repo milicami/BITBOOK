@@ -22,7 +22,6 @@ const getHeaders = () => {
     }
 
     if (localStorage.getItem("sessionId")) {
-        // requestsHeader['SessionId'] = '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE';
         requestsHeader['SessionId'] = localStorage.getItem("sessionId");
     }
 

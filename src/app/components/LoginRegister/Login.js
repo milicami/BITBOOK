@@ -30,10 +30,10 @@ export class Login extends Component {
 
         usersServices.loginUser(loginUserObj)
             .then(response => {
-                //console.log(response.json());
                 return response.json()
             })
             .then(object => {
+                
                 localStorage.setItem('sessionId', object.sessionId);
                 this.props.onSuccessfulLogin();
             })

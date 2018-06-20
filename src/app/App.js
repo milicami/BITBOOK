@@ -16,22 +16,12 @@ import { validationService } from '../services/validationService';
 export class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      sessionId: false
-    }
+   
   }
 
-  hasSessionId = () => {
-    let sessionId = localStorage.getItem("sessionID");
-    if (sessionId) {
-      return this.setState({
-        sessionId: true
-      })
-    }
-  }
-
+ 
   componentDidMount() {
-    this.hasSessionId();
+   
     // M.AutoInit();
   }
 
@@ -56,7 +46,7 @@ export class App extends Component {
               :
               <Switch>
                 <Route exact path="/" component={LogInnRegisterPage} />
-                {/* <Redirect from='/' to='/' /> */}
+               <Redirect from='/' to='/' />
               </Switch>
           }
 
