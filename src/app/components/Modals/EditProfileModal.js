@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import App from '../../App.css';
 import { usersServices } from '../../../services/usersServices';
-
+import '../../../css/profilePage.css';
 
 export class EditProfileModal extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            imageSrc: this.props.photoUrl
-        }
+        // this.state = {
+        //     imageSrc: this.props.photoUrl
+        // }
     }
 
     // onImageUpload = (event) => {
@@ -40,7 +40,9 @@ export class EditProfileModal extends Component {
             return null;
         }
 
-        (this.props.switchUpload) ? <input type="file" value={this.props.photo} onChange={this.props.handlePhoto} /> : <input type="text"  value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} />
+        this.props.switchUpload
+        ? <input type="file" value={this.props.photo} onChange={this.props.handlePhoto} /> 
+        : <input type="text" value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} />
 
 
 
@@ -58,7 +60,10 @@ export class EditProfileModal extends Component {
                             <input type="text" value={this.props.about} placeholder="enter description" onChange={this.props.handleAbout} />
                             <div> Upload photo </div>
 
-                           { (this.props.switchUpload) ?  <input type="text" className={this.props.switchClass} disable value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} /> : <input type="file" className={this.props.switchClass} value={this.props.photo} onChange={this.props.handlePhoto} onClick={this.props.uploadPhoto}/> }
+                           { this.props.switchUpload
+                                ?   <input type="text" className={this.props.switchClass} disable value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} /> :   <input type="file" className={this.props.switchClass}  onChange={this.props.onImgFileChange} /> 
+                            }
+                            
                             {/* <input type="file" className={this.props.switchClass} value={this.props.photo} onChange={this.props.handlePhoto} />
                             <input type="text" className={this.props.switchClass} value={this.props.photo} placeholder="photo url" onChange={this.props.handlePhoto} /> */}
                             <div className="switch">
@@ -69,12 +74,12 @@ export class EditProfileModal extends Component {
                                     from file
                                 </label>
                             </div>
-                            <button onClick={this.props.onImageUpload}> Upload photo </button>
+                            <button className="comment-button" onClick={this.props.onImgFileUpload}> Upload photo </button>
                         </form>
 
                         <div className="modal-footer">
-                            <button className="modal-close waves-effect waves-green btn-flat" onClick={this.props.handleClose}>Close</button>
-                            <button className="modal-close waves-effect waves-green btn-flat" onClick={this.props.updateUserProfile} disabled={this.props.error || !this.props.photo} >Update</button>
+                            <button className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.props.handleClose}>Close</button>
+                            <button className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.props.updateUserProfile} disabled={this.props.error || !this.props.photo} >Update</button>
                         </div>
                     </div>
                 </div>

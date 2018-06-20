@@ -19,9 +19,8 @@ export class ProfilePage extends Component {
             switchUpload: true,
             switchClass: 'show',
             error: null,
-        //    inputFileValue: null,
-        //    photoUrl: '',
-           
+            inputFileValue: null
+
         }
     }
 
@@ -40,7 +39,6 @@ export class ProfilePage extends Component {
 
     handleOpenModal = (event) => {
         event.preventDefault();
-
         this.setState({
             showModal: true
         })
@@ -59,27 +57,19 @@ export class ProfilePage extends Component {
     }
 
     handlePhoto = (event) => {
-
         this.setState({
             photo: event.target.value
             // photo: event.target.files[0]
         })
-        
+
         this.setState({ error: null });
         const valObj = validationService.validateImageForm(event.target.value)
-    
+
         if (valObj.error) {
             this.setState({ error: valObj.error });
             return;
         }
     }
-
-
-
-    
-
-
-
 
     handleClose = (event) => {
         event.preventDefault();
@@ -96,7 +86,6 @@ export class ProfilePage extends Component {
     }
 
     updateUserProfile = (name, about, photo) => {
-
         usersServices.updateUserProfile(this.state.name, this.state.about, this.state.photo)
             .then(() => {
                 this.closeModal();
@@ -108,45 +97,30 @@ export class ProfilePage extends Component {
 
         if (this.state.switchUpload) {
             this.setState({
-                switchClass: 'hide',
+                // switchClass: 'hide',
                 switchUpload: false
             })
-            return this.state.switchClass;
         } else {
             this.setState({
-                switchClass: 'show',
+                // switchClass: 'show',
                 switchUpload: true
             })
-            return;
         }
     }
 
+    onImgFileChange = (event) => {
+        this.setState({
+            inputFileValue: event.target.files[0]
+        })
+    }
 
 
+    onImgFileUpload = (event) => {
+        const imgFile = this.state.inputFileValue;
 
-
-    // onImgFileChange = (event) => {
-    //     this.setState({
-    //         inputFileValue: event.target.files[0]
-    //     })
-    // }
-
-    // onImgFileUpload = (event) => {
-    //     const imgFile = this.state.inputFileValue;
-    //     return usersServices.uploadUserPicture(imgFile)
-    //         .then(response => {
-    //             this.setState({
-    //                 photoUrl: response
-    //             })
-    //             return response
-    //         })
-    // }
-
-
-
-
-
-
+        return usersServices.uploadUserPicture(imgFile)
+            .then(photo => this.setState({ photo }));
+    }
 
 
     render() {
@@ -170,7 +144,24 @@ export class ProfilePage extends Component {
                             <h4>{profileInfo.name}</h4>
                         </div>
 
-                        <EditProfileModal showModal={this.state.showModal} name={this.state.name} about={this.state.about} photo={this.state.photo} handleUsername={this.handleUsername} handleAbout={this.handleAbout} handlePhoto={this.handlePhoto} updateUserProfile={this.updateUserProfile} handleClose={this.handleClose} switchUpload={this.state.switchUpload} switchClass={this.state.s} handlePhotoUpload={this.handlePhotoUpload} error={this.state.error} uploadPhoto={this.uploadPhoto} inputFileValue={this.state.inputFileValue} photoUrl={this.state.photoUrl} onImgFileChange={this.onImgFileChange} onImgFileUpload={this.onImgFileUpload}/>
+                        <EditProfileModal
+                            showModal={this.state.showModal}
+                            name={this.state.name}
+                            about={this.state.about}
+                            photo={this.state.photo}
+                            handleUsername={this.handleUsername}
+                            handleAbout={this.handleAbout}
+                            handlePhoto={this.handlePhoto}
+                            updateUserProfile={this.updateUserProfile}
+                            handleClose={this.handleClose}
+                            switchUpload={this.state.switchUpload}
+                            // switchClass={this.state.switchClass}
+                            handlePhotoUpload={this.handlePhotoUpload}
+                            error={this.state.error}
+                            uploadPhoto={this.uploadPhoto}
+                            inputFileValue={this.state.inputFileValue}
+                            onImgFileChange={this.onImgFileChange}
+                            onImgFileUpload={this.onImgFileUpload} />
 
                         <a className="waves-effect waves-light btn modal-trigger comment-button" onClick={this.handleOpenModal} >Edit Profile</a>
                         <div className='row'>
