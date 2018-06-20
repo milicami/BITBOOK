@@ -1,4 +1,4 @@
-import {requestsHeader, userEditProfileEndpoint, registerEndpoint } from '../shared/constants';
+import {userEditProfileEndpoint, registerEndpoint } from '../shared/constants';
 
 
 export const get = (url) => {
@@ -6,7 +6,7 @@ export const get = (url) => {
     return fetch(url, {
         cache: 'no-cache',
         credentials: 'same-origin',
-        headers: requestsHeader,
+        headers: getHeaders(),
         method: 'GET',
         mode: 'cors'
     })
@@ -15,13 +15,26 @@ export const get = (url) => {
         })
 }
 
+const getHeaders = () => {
+    let requestsHeader = {
+        'Content-Type': 'application/json',
+        'Key': 'bitbookdev',
+    }
+    
+  //  if(localStorage.getItem("SessionId")) {
+        requestsHeader['SessionId'] = '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE';
+//        requestsHeader['SessionId'] = localStorage.getItem("SessionId");
+    //}
+    
+    return requestsHeader;
+}
 
-export const post = (url, newContent, headers = requestsHeader) => {
+export const post = (url, newContent) => {
 
     const postData = {
         method: 'POST',
         body: JSON.stringify(newContent),
-        headers: headers,
+        headers: getHeaders(),
         mode: 'cors'
     }
     return fetch(url, postData)
@@ -34,7 +47,7 @@ export const put = (url, data) => {
        
         method: 'PUT',
         body: JSON.stringify(data),
-        headers: requestsHeader,
+        headers: getHeaders(),
     })
       
 }
