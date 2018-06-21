@@ -95,6 +95,7 @@ export class Form extends Component {
                 }
 
                 <div className="switch type-upload">
+                    {/* <div> <img src={this.state.photo} className='preview-image' /> </div> */}
                     <label>
                         from url
                         <input type="checkbox" value={this.state.switchUpload} onClick={this.switchSourceUpload} />
@@ -104,7 +105,7 @@ export class Form extends Component {
                 </div>
                 <button className="comment-button upload-button" onClick={this.onImgFileUpload}> Upload photo </button>
                 <div className="modal-footer">
-                    <button className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.props.handleClose}>Cancel</button>
+                    <button className="modal-close waves-effect waves-green btn-flat comment-button " id="cancel" onClick={this.props.handleClose}>Cancel</button>
                     <button
                         className="modal-close waves-effect waves-green btn-flat comment-button" onClick={this.onSubmit}
                         disabled={this.state.error || !this.state.photo}>

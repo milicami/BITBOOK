@@ -30,16 +30,7 @@ img.img {
     margin-top: 3%;
 }
 
-/* .hide{
-    display: none
-}
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-} */
 
 .modal-style {
    width: 60%;
@@ -60,4 +51,14 @@ img.img {
 
 .upload-photo {
     margin-bottom: 3%;
+}
+
+#cancel {
+margin-right: 10px;
+}
+
+.preview-image {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 2%;
 }
