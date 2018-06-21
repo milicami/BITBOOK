@@ -26,7 +26,7 @@ export class ProfilePage extends Component {
         usersServices.fetchProfile()
             .then(response => {
                 this.setState({
-                    profile: response.userId
+                    profile: response
                 });
                 // window.localStorage.setItem("userId", response.userId);
             })

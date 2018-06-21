@@ -12,7 +12,7 @@ class ValidationService {
         if (typeValue === 'imageUrl') {
             return this.validateImageForm(inputValue);
         } else if (typeValue === 'videoUrl') {
-            return this.validateVideoForm(inputValue);
+            return this.validateVideoForm(inputValue);  
         }
 
         return { valid: true };
