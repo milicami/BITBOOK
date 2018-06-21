@@ -1,4 +1,4 @@
-import feedPage from "../../../css/feedPage.css";
+import "../../../css/feedPage.css";
 import React, { Component } from 'react';
 import M from "materialize-css";
 

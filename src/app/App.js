@@ -12,6 +12,7 @@ import { ProfilePage } from './pages/ProfilePage';
 import { UserPage } from './pages/UserPage';
 import { LogInRegisterPage } from './pages/LogInRegisterPage';
 import { authService } from '../services/authService';
+import { WelcomeHeader } from './components/LoginRegister/WelcomeHeader';
 
 export class App extends Component {
   constructor(props) {
@@ -28,12 +29,13 @@ export class App extends Component {
   render() {
     return (
       <Fragment>
-        <Header />
+       <WelcomeHeader />
         <main>
 
           {
             authService.isUserLogged() ?
               <Switch>
+                 <Header />
                 <Route exact path="/feed" component={FeedPage} />
                 <Route path="/post/:type/:id" component={PostPage} />
                 {/* <Route path="/post/:id" component={PostPage} /> */}
@@ -47,12 +49,12 @@ export class App extends Component {
               
               <Switch>
                 <Route exact path="/" component={LogInRegisterPage} />
-               <Redirect from='/' to='/' />
+               <Redirect from='/' to='/' /> 
               </Switch>
           }
 
         </main>
-        <Footer />
+          <Footer />
       </Fragment>
     );
   }

@@ -1,4 +1,4 @@
-import App from "../../App.css"
+import "../../App.css"
 import React, { Component } from 'react';
 import M from "materialize-css";
 

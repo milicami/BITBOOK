@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import App from '../../App.css';
+import React from 'react';
+import '../../App.css';
 import '../../../css/profilePage.css'
 import { usersServices } from '../../../services/usersServices';
 import { Form } from './Form';

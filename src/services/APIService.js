@@ -1,5 +1,3 @@
-import { userEditProfileEndpoint, registerEndpoint } from '../shared/constants';
-
 
 export const getHeaders = () => {
     let requestsHeader = {

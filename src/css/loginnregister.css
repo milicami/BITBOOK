@@ -11,11 +11,18 @@
 }
 
 .active1 {
-    background-color: #ee6e73;
+    background-color: rgb(216, 143, 131);
     color: white;
-    border-radius: 4px;
+    border-radius: 30px;
+    text-align: center;
 }
 
 .login-text {
     padding: 40px;
+}
+
+#comment-button {
+    background-color: rgb(216, 143, 131);
+    border-radius: 30px;
+    text-align: center;
 }

@@ -1,4 +1,4 @@
-import { userEndpoint, requestsHeader, profileEndpoint, userEditProfileEndpoint, photoUploadEndpoint, registerEndpoint, loginEndpoint } from "../shared/constants";
+import { userEndpoint, profileEndpoint, userEditProfileEndpoint, registerEndpoint, loginEndpoint } from "../shared/constants";
 import { get, post, put } from "./APIService";
 import { User } from "../entities/User";
 

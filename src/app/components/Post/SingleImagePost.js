@@ -19,8 +19,10 @@ export const SingleImagePost = (props) => {
                     </div>
                     <div className="card-action"></div>
                 </div>
-                <button className="comment-button" onClick={onDelete}>Delete</button>
+                <button className='comment-button' onClick={onDelete}>Delete</button>
             </div>
         </div>
     );
 }
+
+// {`${ props.post.userId === !localStorage.getItem("userId") ? "delete-post-button" : ""}`}

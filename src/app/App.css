@@ -52,3 +52,11 @@ main {
   position: relative;
   height: 300px;
 }
+
+#welcome-header {
+  display: none;
+}
+
+#welcome-footer {
+  display: none;
+}

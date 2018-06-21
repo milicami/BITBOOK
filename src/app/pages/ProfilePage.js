@@ -3,7 +3,6 @@ import { usersServices } from '../../services/usersServices';
 import '../../css/profilePage.css'
 import { EditProfileModal } from '../components/Profile/EditProfileModal';
 import M from "materialize-css";
-import { validationService } from '../../services/validationService';
 import { uploadServices } from '../../services/uploadServices';
 import { Loader } from '../partials/Loader';
 
@@ -28,7 +27,6 @@ export class ProfilePage extends Component {
                 this.setState({
                     profile: response
                 });
-                // window.localStorage.setItem("userId", response.userId);
             })
     }
 
@@ -45,7 +43,6 @@ export class ProfilePage extends Component {
             showModal: true,
             name: this.state.profile.name,
             about: this.state.profile.aboutShort,
-            //photo: this.state.profile.avatarUrl
         })
     }
 

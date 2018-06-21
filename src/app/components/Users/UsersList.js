@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import { SingleUser } from "./SingleUserCard";
 import { SearchUsers } from "./SearchUsers";
 import {NoUser} from "./NoUser";
