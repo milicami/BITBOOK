@@ -1,13 +1,22 @@
 import { textPostEndpoint, imagePostEndpoint, videoPostEndpoint } from "../shared/constants";
-import { postEndpoint, requestsHeader, commentsEndpoint, baseEndpoint} from '../shared/constants';
+import { postEndpoint, requestsHeader, commentsEndpoint, baseEndpoint } from '../shared/constants';
 import { Post } from '../entities/Post';
 import { get } from './APIService';
 import { TextPost, VideoPost, ImagePost } from '../entities/Post';
+import { validationService } from './validationService'
 
 class PostsServices {
 
     fetchPosts() {
         return get(postEndpoint)
+            .then(postList => {
+                return postList.filter(post => {
+                    if (post.videoUrl) {
+                        return post.videoUrl.includes("youtube")
+                    }
+                    return true
+                })
+            })
             .then(myPostList => {
                 return myPostList.map(post => {
                     switch (post.type) {
@@ -16,7 +25,7 @@ class PostsServices {
                         case 'image':
                             return new ImagePost(post.id, post.date, post.userId, post.userDisplayName, post.type, post.commentsNum, post.imageUrl)
                         case 'video':
-                            return new VideoPost(post.id, post.date, post.userId, post.userDisplayName, post.type, post.commentsNum, post.videoUrl)
+                            return new VideoPost(post.id, post.date, post.userId, post.userDisplayName, post.type, post.commentsNum, post.videoUrl)      
                     }
                 })
             })
@@ -44,10 +53,10 @@ class PostsServices {
     }
 
     fetchSinglePost(type, singlePostId) {
-        
+
         const urlEndpoint = (`${this.typeUrl(type)}${singlePostId}`);
         return get(urlEndpoint)
-           
+
     }
 
     chooseEndpoint = (postBodyType) => {

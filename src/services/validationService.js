@@ -1,4 +1,3 @@
-
 class ValidationService {
     
     validatePost(inputValue, typeValue) {
@@ -35,7 +34,7 @@ class ValidationService {
     }
 
     validateImageForm = (inputValue) => {
-        if ((inputValue.includes('jpg')) || (inputValue.includes('gif')) || (inputValue.includes('png')) || (inputValue.includes('bmp'))) {
+        if ((inputValue.includes('http://')) &&  (inputValue.includes('jpg')) || (inputValue.includes('gif')) || (inputValue.includes('png')) || (inputValue.includes('bmp'))) {
             return { valid: true };
         }
 
@@ -48,6 +47,28 @@ class ValidationService {
         }
         return { error: "Upload youtube file format." }
     }
+    
+
+    validateRegisterName (inputValue){
+       return inputValue ? "" : { registerError: "Content is required!" }
+        // if (!this.hasContent(inputValue)) {
+        //     return { registerError: "Content is required!" };
+        // }
+       
+        // return { registerError: "" };
+    }
+
+    // validateRegisterUsername (inputValue){
+    //     if (!this.hasContent(inputValue)) {
+    //         return { registerError: "Content is required!" };
+    //     }
+        
+    // }
+
+    // validateRegisterEmail(inputValue){
+
+    // }
+  
 }
 
 export const validationService = new ValidationService;

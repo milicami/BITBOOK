@@ -25,9 +25,11 @@ export class CreatePostModal extends Component {
     handleChange = (event) => {
         this.setState({
             inputValue: event.target.value,
+            error: null
+
         });
 
-        this.setState({ error: null });
+        // this.setState({ error: null });
 
         const valObj = validationService.validatePost(event.target.value, this.props.newPostType)
 
@@ -94,6 +96,7 @@ export class CreatePostModal extends Component {
                         {this.props.newPostType === 'imageUrl' && this.renderImageForm()}
 
                         {error && <p>{error}</p>}
+
                     </div>
                         <div className="modal-footer">
                             <a href="#!" className="modal-close waves-effect waves-green btn-flat" disabled={this.state.error || !this.state.inputValue} onClick={this.onCreate}>POST</a>

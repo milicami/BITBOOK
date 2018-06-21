@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react';
 import { SingleUser } from "./SingleUserCard";
 import { SearchUsers } from "./SearchUsers";
 import {NoUser} from "./NoUser";
+import { Loader } from "../../partials/Loader"
 
 export class UserList extends Component {
     constructor(props) {
@@ -15,9 +16,11 @@ export class UserList extends Component {
                 return <SingleUser myUser={user} key={index} />
             });
         } else {
-            return (
-               <NoUser />
-            )
+           if (this.props.searchInputValue) {
+                return <NoUser />
+           }
+
+            return <Loader />
         }
     };
 

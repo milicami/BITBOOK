@@ -16,6 +16,6 @@ export const SingleUser = (props) => {
     )
 }
 
-SingleUser.PropTypes = {
+SingleUser.propTypes = {
     myUser: PropTypes.object.isRequired
 }

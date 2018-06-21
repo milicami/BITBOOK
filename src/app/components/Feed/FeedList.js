@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { TextPost } from './TextPost';
 import { VideoPost } from './VideoPost';
 import { ImagePost } from './ImagePost';
+import { Loader } from '../../partials/Loader'
 
 import M from "materialize-css"
 
