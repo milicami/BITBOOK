@@ -34,7 +34,7 @@ class ValidationService {
     }
 
     validateImageForm = (inputValue) => {
-        if ((inputValue.includes('jpg')) || (inputValue.includes('gif')) || (inputValue.includes('png')) || (inputValue.includes('bmp'))) {
+        if ((inputValue.includes('http://www.')) &&  (inputValue.includes('jpg')) || (inputValue.includes('gif')) || (inputValue.includes('png')) || (inputValue.includes('bmp'))) {
             return { valid: true };
         }
 
