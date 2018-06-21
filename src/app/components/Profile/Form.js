@@ -8,9 +8,9 @@ export class Form extends Component {
         super(props);
 
         this.state = {
-            name: '',
-            about: '',
-            photo: '',
+            name: this.props.profile.name,
+            about: this.props.profile.aboutShort,
+            photo: this.props.profile.avatarUrl,
             switchUpload: true,
             error: null,
             inputFileValue: null
@@ -46,12 +46,14 @@ export class Form extends Component {
     switchSourceUpload = (event) => {
         if (this.state.switchUpload) {
             this.setState({
-                switchUpload: false
+                switchUpload: false,
+                photo: ''
             })
 
         } else {
             this.setState({
-                switchUpload: true
+                switchUpload: true,
+                photo: this.props.profile.avatarUrl
             })
         }
     }

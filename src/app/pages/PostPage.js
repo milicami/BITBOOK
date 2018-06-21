@@ -105,7 +105,6 @@ export class PostPage extends Component {
                             <div className='col s1'>
                                 <button className="btn waves-effect waves-light comment-button" type="submit" disabled={!this.state.inputValue} name="action" onClick={this.loadNewComment}>SEND</button>
                             </div>
-                            <div className="col s3 color-red">{this.state.inputValue ? "" : "*Comment input is required"} </div>
                         </div>
                     </div>
                     <div className="row">

@@ -14,6 +14,7 @@ export class ProfilePage extends Component {
         this.state = {
             profile: null,
             showModal: false,
+        
         }
     }
 
@@ -40,8 +41,10 @@ export class ProfilePage extends Component {
     handleOpenModal = (event) => {
         event.preventDefault();
         this.setState({
-            showModal: true
-
+            showModal: true,
+            name: this.state.profile.name,
+            about: this.state.profile.aboutShort,
+            //photo: this.state.profile.avatarUrl
         })
     }
 
@@ -49,7 +52,9 @@ export class ProfilePage extends Component {
         event.preventDefault();
         this.setState({
             showModal: false,
-            photo: ''
+            name: event.target.value,
+            about: event.target.value,
+            photo: event.target.value
         })
 
     }
