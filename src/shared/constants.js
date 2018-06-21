@@ -12,11 +12,6 @@ const photoUploadEndpoint = 'http://bitbookapi.azurewebsites.net/api/upload';
 const registerEndpoint = "http://bitbookapi.azurewebsites.net/api/register";
 const loginEndpoint = "http://bitbookapi.azurewebsites.net/api/login";
 
-// const requestsHeader = {
-//     'Content-Type': 'application/json',
-//     'Key': 'bitbookdev',
-//     'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
-// }
 
 const registerPostHeaders = {
     'Content-Type': 'application/json',
@@ -26,7 +21,6 @@ const registerPostHeaders = {
 export { 
     baseEndpoint, 
     postEndpoint, 
-    // requestsHeader, 
     commentsEndpoint, 
     userEndpoint, 
     newCommentEndpoint, 

@@ -2,8 +2,6 @@ import App from "../../App.css"
 import React, { Component } from 'react';
 import M from "materialize-css";
 
-
-
 export class CreatePostButton extends Component {
     constructor(props) {
         super(props);

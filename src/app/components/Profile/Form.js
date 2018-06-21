@@ -77,8 +77,6 @@ export class Form extends Component {
         this.props.handleClose(event);
     }
 
-
-
     render() {
         return (
             <form>

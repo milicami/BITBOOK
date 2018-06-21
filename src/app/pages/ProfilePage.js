@@ -5,7 +5,7 @@ import { EditProfileModal } from '../components/Profile/EditProfileModal';
 import M from "materialize-css";
 import { validationService } from '../../services/validationService';
 import { uploadServices } from '../../services/uploadServices';
-
+import { Loader } from '../partials/Loader';
 
 export class ProfilePage extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ export class ProfilePage extends Component {
         this.state = {
             profile: null,
             showModal: false,
-        
+
         }
     }
 
@@ -24,10 +24,11 @@ export class ProfilePage extends Component {
 
     loadProfile = () => {
         usersServices.fetchProfile()
-            .then(profile => {
+            .then(response => {
                 this.setState({
-                    profile: profile
+                    profile: response.userId
                 });
+                // window.localStorage.setItem("userId", response.userId);
             })
     }
 
@@ -64,7 +65,7 @@ export class ProfilePage extends Component {
         const profile = this.state.profile;
 
         if (profile === null) {
-            return <div> Loading profile </div>
+            return <Loader />
         }
         return (
             <Fragment>

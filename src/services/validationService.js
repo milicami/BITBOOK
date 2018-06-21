@@ -34,7 +34,7 @@ class ValidationService {
     }
 
     validateImageForm = (inputValue) => {
-        if ((inputValue.includes('http://')) &&  (inputValue.includes('jpg')) || (inputValue.includes('gif')) || (inputValue.includes('png')) || (inputValue.includes('bmp'))) {
+        if (inputValue.includes('jpg') || inputValue.includes('gif') || inputValue.includes('png') || inputValue.includes('bmp')) {
             return { valid: true };
         }
 
@@ -68,6 +68,8 @@ class ValidationService {
     // validateRegisterEmail(inputValue){
 
     // }
+
+    // (inputValue.includes('http://')) &&
   
 }
 

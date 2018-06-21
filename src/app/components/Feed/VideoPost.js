@@ -6,9 +6,7 @@ import '../../../css/feedPage.css'
 export const VideoPost = (props) => {
     const { videoUrl, type, id, commentsNum } = props.post
 
-
     return (
-
         <div className='video-post'>
             <div className="row">
                 <div className="col s12">

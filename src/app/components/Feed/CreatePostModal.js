@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import M from "materialize-css";
 import { validationService } from '../../../services/validationService';
+import '../../../css/profilePage.css'
 
 
 export class CreatePostModal extends Component {
@@ -99,7 +100,7 @@ export class CreatePostModal extends Component {
 
                     </div>
                         <div className="modal-footer">
-                            <a href="#!" className="modal-close waves-effect waves-green btn-flat" disabled={this.state.error || !this.state.inputValue} onClick={this.onCreate}>POST</a>
+                            <a href="#!" className="modal-close waves-effect waves-green btn-flat comment-button" disabled={this.state.error || !this.state.inputValue} onClick={this.onCreate}>POST</a>
                         </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ export const FeedList = (props) => {
         <Fragment>
             <div className='container'>
                 {props.posts.length === 0
-                    ? <p>Loading...</p>
+                    ? <Loader />
                     : (props.posts.map((post, key) => {
 
                         switch (post.type) {

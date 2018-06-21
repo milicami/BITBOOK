@@ -7,9 +7,7 @@ export const ImagePost = (props) => {
 
     const { type, id, imageUrl, commentsNum } = props.post
 
-
     return (
-
         <div className="row">
             <div className="col s12">
                 <div className="card">

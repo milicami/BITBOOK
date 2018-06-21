@@ -40,3 +40,14 @@ main {
 .bitbook {
   font-size: 20px;
 }
+
+.loader-style {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+}
+
+.loader-wrapper {
+  position: relative;
+  height: 300px;
+}

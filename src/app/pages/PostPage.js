@@ -7,7 +7,7 @@ import { SingleComment } from '../components/Post/SingleComment';
 import { commentsServices } from '../../services/commentsServices';
 import { usersServices } from '../../services/usersServices';
 import postPage from '../../css/postPage.css'
-
+import {Loader} from '../partials/Loader';
 
 
 
@@ -19,24 +19,27 @@ export class PostPage extends Component {
         this.state = {
             post: null,
             comments: [],
-            inputValue: ""
+            inputValue: "",
         }
     }
 
     componentDidMount() {
         this.loadSinglePost(this.props.match.params.type, this.props.match.params.id);
         this.loadComments(this.props.match.params.id);
+        this.setState({
+            postId: this.props.match.params.id
+        })   
     }
 
     loadSinglePost = (type, postId) => {
         postsServices.fetchSinglePost(type, postId)
             .then(post => {
-                this.setState({ post });
+                this.setState({ post }); 
             });
-    }
-
-    loadComments = (commentId) => {
-        commentsServices.fetchComments(commentId)
+        }
+        
+        loadComments = (commentId) => {
+            commentsServices.fetchComments(commentId)
             .then(comments => {
                 this.setState({
                     comments: comments
@@ -47,14 +50,18 @@ export class PostPage extends Component {
     displayPost = () => {
         switch (this.state.post.type) {
             case 'text':
-                return <SingleTextPost post={this.state.post} />
+                return <SingleTextPost post={this.state.post} onDelete={this.onSuccessfulDelete}  />
             case 'image':
-                return <SingleImagePost post={this.state.post} />
+                return <SingleImagePost post={this.state.post} onDelete={this.onSuccessfulDelete} />
             case 'video':
-                return <SingleVideoPost post={this.state.post} />
+                return <SingleVideoPost post={this.state.post} onDelete={this.onSuccessfulDelete}  />
             default:
                 return <p>Invalid type of input</p>
         }
+    }
+
+    onSuccessfulDelete = () => {
+        this.props.history.push("/feed");
     }
 
     handleChange = (event) => {
@@ -85,13 +92,17 @@ export class PostPage extends Component {
                     });
                 })
         }
-
     }
+
+
+
+
+
 
     render() {
 
         if (!this.state.comments) {
-            return <h3>Loading...</h3>
+            return <Loader />
         }
         return (
             <Fragment>

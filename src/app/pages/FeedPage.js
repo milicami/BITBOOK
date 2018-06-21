@@ -6,6 +6,7 @@ import { CreatePostModal } from "../components/Feed/CreatePostModal";
 import M from "materialize-css";
 import { TextPost } from '../../entities/Post';
 import { FilterPostsDropDown } from "../components/Feed/FilterPostsDropDown"
+import { usersServices } from '../../services/usersServices';
 
 
 export class FeedPage extends Component {
@@ -15,13 +16,25 @@ export class FeedPage extends Component {
             posts: [],
             newPostType: '',
             filteredPosts: [],
-            selectedPostFilter: "allPosts"
+            selectedPostFilter: "allPosts",
+            profile: null
         })
     }
 
     componentDidMount() {
         this.loadPosts();
+        // this.loadMyProfile();
     }
+
+    // loadMyProfile = () => {
+    //     usersServices.fetchProfile()
+    //         .then(profile => {
+    //             this.setState({
+    //                 profile: profile
+    //             });
+    //             console.log("feed" + this.state.profile)
+    //         })
+    // }
 
     loadPosts = () => {
         postsServices.fetchPosts()
@@ -80,6 +93,7 @@ export class FeedPage extends Component {
                 filteredPosts: filteredPosts,
                 selectedPostFilter: event.target.value                
             }); 
+
         } else if (event.target.value === "allPosts") {
             const filteredPosts = this.state.posts
             this.setState({
@@ -91,10 +105,12 @@ export class FeedPage extends Component {
 
     handleSubmit = (postBodyContent) => {
         let newPostPropertyType = this.state.newPostType;
-
+        const userId = localStorage.getItem('userId')
+        // console.log('localStorage' + userId)
         const newPost = {
+
             date: Date.now(),
-            userId: 1,
+            userId: userId,
             userDisplayName: "NoReturn",
             type: this.state.newPostType,
             numOfComments: 0,
@@ -121,7 +137,8 @@ export class FeedPage extends Component {
                 this.setState({
                     selectedPostFilter: "allPosts"
                 });
-            }).catch(message => {
+            })
+            .catch(message => {
                 console.log(message)
                 alert("Failed to create post.")
             })
