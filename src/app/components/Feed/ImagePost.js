@@ -8,18 +8,20 @@ export const ImagePost = (props) => {
     const { type, id, imageUrl, commentsNum } = props.post
 
     return (
-        <div className="row">
-            <div className="col s12">
-                <div className="card">
-                    <div className="card-image">
-                        <img src={imageUrl} alt='img' />
-                    </div>
-                    <div className="card-action">
-                        <span className=" col s6 offset s2 ">Image Post </span>
-                        <Link to={`/post/${type}/${id}`} > {commentsNum === 0 ? "0" : commentsNum} comments</Link>
+        <Link to={`/post/${type}/${id}`} className='post-color'>
+            <div className="row">
+                <div className="col s12">
+                    <div className="card">
+                        <div className="card-image">
+                            <img src={imageUrl} alt='img' />
+                        </div>
+                        <div className="card-action">
+                            <span className=" col s6 offset s2 ">Image Post </span>
+                            {commentsNum === 0 ? "0" : commentsNum} comments
+                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
