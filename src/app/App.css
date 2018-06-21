@@ -33,7 +33,10 @@ main {
 .people-search {
   margin-top: 20px;
 }
-.fixed-action-btn {
+/* .fixed-action-btn {
   right: 250px !important;
-}
+} */
 
+.bitbook {
+  font-size: 20px;
+}

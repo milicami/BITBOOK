@@ -1,5 +1,5 @@
-import { userEndpoint, requestsHeader, profileEndpoint, userEditProfileEndpoint } from "../shared/constants";
-import { get, put } from "./APIService";
+import { userEndpoint, requestsHeader, profileEndpoint, userEditProfileEndpoint, photoUploadEndpoint } from "../shared/constants";
+import { get, put, post } from "./APIService";
 import { User } from "../entities/User";
 
 class UsersServices {
@@ -27,7 +27,7 @@ class UsersServices {
                 console.error(error);
                 alert('No user to show.')
             })
-
+    }
 
     fetchProfile() {
         return get(profileEndpoint)
@@ -38,6 +38,7 @@ class UsersServices {
                 console.error(error);
                 alert('No profile to show.')
             })
+
     }
 
     updateUserProfile(name, about, photo) {
@@ -54,9 +55,8 @@ class UsersServices {
 
         return put(userEditProfileEndpoint, updateData)
     }
+
 }
-
-
 
 
 export const usersServices = new UsersServices;

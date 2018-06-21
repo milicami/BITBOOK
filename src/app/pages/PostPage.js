@@ -8,6 +8,9 @@ import { commentsServices } from '../../services/commentsServices';
 import { usersServices } from '../../services/usersServices';
 import postPage from '../../css/postPage.css'
 
+
+
+
 export class PostPage extends Component {
 
     constructor(props) {
@@ -15,8 +18,7 @@ export class PostPage extends Component {
 
         this.state = {
             post: null,
-            comments: null,
-            user: {},
+            comments: [],
             inputValue: ""
         }
     }
@@ -30,7 +32,6 @@ export class PostPage extends Component {
         postsServices.fetchSinglePost(type, postId)
             .then(post => {
                 this.setState({ post });
-                this.loadSingleUser(post.userId);
             });
     }
 
@@ -39,15 +40,6 @@ export class PostPage extends Component {
             .then(comments => {
                 this.setState({
                     comments: comments
-                })
-            })
-    }
-
-    loadSingleUser = (userId) => {
-        usersServices.fetchSingleUser(userId)
-            .then(user => {
-                this.setState({
-                    user: user
                 })
             })
     }
@@ -61,7 +53,7 @@ export class PostPage extends Component {
             case 'video':
                 return <SingleVideoPost post={this.state.post} />
             default:
-                return <p>not valid type of input</p>
+                return <p>Invalid type of input</p>
         }
     }
 
@@ -82,7 +74,6 @@ export class PostPage extends Component {
             event.preventDefault();
 
         } else {
-
             commentsServices.addComment(comment)
                 .then((response) => {
                     return response.json()
@@ -97,12 +88,6 @@ export class PostPage extends Component {
 
     }
 
-    mapComments = () => {
-        this.state.comments.map(comment => {
-            return <SingleComment comment={comment} user={this.state.user} />
-        })
-    }
-
     render() {
 
         if (!this.state.comments) {
@@ -111,30 +96,26 @@ export class PostPage extends Component {
         return (
             <Fragment>
                 <div className="container">
-                {this.state.post === null ? "" : this.displayPost()}
-                <br />
-                {/* <div className="container comments"> */}
+                    {this.state.post === null ? "" : this.displayPost()}
+                    <br />
                     <div className="row">
                         <div className="input-field">
-                            <input type="text" id="autocomplete-input" className="autocomplete col s11" placeholder='Add your comment' onChange={this.handleChange} value={this.state.inputValue}/>
+                            <input type="text" id="autocomplete-input" className="autocomplete col s11" placeholder='Add your comment' onChange={this.handleChange} value={this.state.inputValue} />
                             <label htmlFor="autocomplete-input" ></label>
                             <div className='col s1'>
-                                <button className="btn waves-effect waves-light" type="submit" disabled={!this.state.inputValue} name="action" onClick={this.loadNewComment}>SEND</button>
+                                <button className="btn waves-effect waves-light comment-button" type="submit" disabled={!this.state.inputValue} name="action" onClick={this.loadNewComment}>SEND</button>
                             </div>
-                            <div className="col s3 color-red">{this.state.inputValue ? "" : "*Comment input is required"} </div>
                         </div>
                     </div>
                     <div className="row">
-
                         <ul className="collection">
-                            {this.state.comments.map(comment => {
-                                return <SingleComment comment={comment} user={this.state.user} />
+
+                            {this.state.comments.map((comment, key) => {
+                                return <SingleComment comment={comment} key={key} />
                             })}
+
                         </ul>
                     </div>
-
-                {/* </div> */}
-
                 </div>
             </Fragment>
         )

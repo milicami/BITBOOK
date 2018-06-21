@@ -1,11 +1,13 @@
 import { commentsEndpoint, requestsHeader, newCommentEndpoint } from '../shared/constants';
 import { get, post } from './APIService';
 
+
 class CommentsServices {
 
-    
+
     fetchComments(postId) {
         return get(`${commentsEndpoint}${postId}`)
+          
     }
 
     addComment(data) {

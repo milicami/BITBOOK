@@ -23,14 +23,14 @@ export class FeedPage extends Component {
     }
 
     loadPosts = () => {
-
         postsServices.fetchPosts()
             .then(data => {
                 this.setState({
                     posts: data,
                     filteredPosts: data
                 })
-            }).catch(message => {
+            })
+            .catch(message => {
                 console.log(message)
                 alert("Failed to load posts.")
             });
@@ -75,7 +75,8 @@ export class FeedPage extends Component {
             })
             this.setState({
                 filteredPosts: filteredPosts
-            }); 
+            });
+
         } else if (event.target.value === "allPosts") {
             const filteredPosts = this.state.posts
             this.setState({
@@ -98,8 +99,10 @@ export class FeedPage extends Component {
 
         if (newPostPropertyType === "text") {
             newPost["text"] = postBodyContent;
+
         } else if (newPostPropertyType === "imageUrl") {
             newPost["imageUrl"] = postBodyContent;
+
         } else if (newPostPropertyType === "videoUrl") {
             newPost["videoUrl"] = postBodyContent.replace("watch?v=", "embed/");
         }
@@ -111,7 +114,8 @@ export class FeedPage extends Component {
             .then(newPost => {
                 this.setState({ newPostType: null });
                 this.loadPosts();
-            }).catch(message => {
+            })
+            .catch(message => {
                 console.log(message)
                 alert("Failed to create post.")
             })
