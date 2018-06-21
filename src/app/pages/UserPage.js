@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { usersServices } from '../../services/usersServices';
 import '../../css/profilePage.css'
+import { Loader } from '../partials/Loader';
 
 
 export class UserPage extends Component {
@@ -30,7 +31,7 @@ export class UserPage extends Component {
         const userInfo = this.state.user;
 
         if (userInfo === null) {
-            return <div> Loading user </div>
+            return <Loader />
         }
         return (
             <Fragment>

@@ -1,6 +1,19 @@
 import { userEditProfileEndpoint, registerEndpoint } from '../shared/constants';
 
 
+export const getHeaders = () => {
+    let requestsHeader = {
+        'Content-Type': 'application/json',
+        'Key': 'bitbookdev',
+    }
+
+    if (localStorage.getItem("sessionId")) {
+        requestsHeader['SessionId'] = localStorage.getItem("sessionId");
+    }
+
+    return requestsHeader;
+}
+
 export const get = (url) => {
 
     return fetch(url, {
@@ -15,18 +28,6 @@ export const get = (url) => {
         })
 }
 
-const getHeaders = () => {
-    let requestsHeader = {
-        'Content-Type': 'application/json',
-        'Key': 'bitbookdev',
-    }
-
-    if (localStorage.getItem("sessionId")) {
-        requestsHeader['SessionId'] = localStorage.getItem("sessionId");
-    }
-
-    return requestsHeader;
-}
 
 export const post = (url, newContent) => {
 
@@ -49,5 +50,14 @@ export const put = (url, data) => {
         headers: getHeaders(),
     })
 
+}
+
+export const deleteData = (url) => {
+
+    return fetch(url, {
+
+        method:'DELETE',
+        headers: getHeaders()
+    })
 }
 
