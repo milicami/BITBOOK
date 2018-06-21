@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import M from "materialize-css"
 import '../App.css'
+import { createHashHistory } from 'history';
 
 export const Header = () => {
 
@@ -10,6 +11,13 @@ export const Header = () => {
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems);
       });
+
+      const logoutHandler = (event) => {
+        const history = createHashHistory();
+          event.preventDefault();
+          localStorage.removeItem("sessionId");
+          history.push("/")
+      }
     
     return (
         <header>
@@ -22,6 +30,7 @@ export const Header = () => {
                             <li><Link to='/feed'>Feed</Link></li>
                             <li><Link to='/people'>People</Link></li>
                             <li><Link to='/profile'>Profile</Link></li>
+                            <li><a href="#" onClick={logoutHandler} className={`${!localStorage.getItem("sessionId") ? "hideLogout" : ""}`}>Logout</a></li> 
                         </ul>
                     </div>
                 </div>

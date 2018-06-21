@@ -18,7 +18,8 @@ main {
   z-index: 10000000;
 }
 
-.hideValidateMessage {
+.hideValidateMessage,
+.hideLogout {
   display: none;
 }
 

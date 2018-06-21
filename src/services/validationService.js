@@ -1,5 +1,5 @@
 class ValidationService {
-    
+
     validatePost(inputValue, typeValue) {
         if (!this.hasValidPostType(typeValue)) {
             return { error: "Post type is not supported!" };
@@ -11,11 +11,11 @@ class ValidationService {
 
         if (typeValue === 'imageUrl') {
             return this.validateImageForm(inputValue);
-         }  else if (typeValue === 'videoUrl') {
-             return this.validateVideoForm(inputValue);
-         }
+        } else if (typeValue === 'videoUrl') {
+            return this.validateVideoForm(inputValue);  
+        }
 
-          return {valid: true};
+        return { valid: true };
     }
 
     hasValidPostType(typeValue) {
@@ -34,7 +34,8 @@ class ValidationService {
     }
 
     validateImageForm = (inputValue) => {
-        if (inputValue.includes('jpg') || inputValue.includes('gif') || inputValue.includes('png') || inputValue.includes('bmp')) {
+        if ((inputValue.includes('http://')) && (inputValue.includes('jpg')) || (inputValue.includes('gif')) || (inputValue.includes('png')) || (inputValue.includes('bmp'))) {
+
             return { valid: true };
         }
 
@@ -47,30 +48,44 @@ class ValidationService {
         }
         return { error: "Upload youtube file format." }
     }
-    
 
-    validateRegisterName (inputValue){
-       return inputValue ? "" : { registerError: "Content is required!" }
-        // if (!this.hasContent(inputValue)) {
-        //     return { registerError: "Content is required!" };
-        // }
-       
-        // return { registerError: "" };
+    validateEmailForm = (inputValue) => {
+        if (inputValue.includes("@")) {
+            return { valid: true };
+        }
+        return { error: "Input valid e-mail address" }
     }
 
-    // validateRegisterUsername (inputValue){
-    //     if (!this.hasContent(inputValue)) {
-    //         return { registerError: "Content is required!" };
-    //     }
-        
-    // }
+    validatePasswordForm = (inputValue) => {
+        const isNum = (inputValue) => {
+            for (let i = 0; i <inputValue.length; i++){
+                if(!isNaN(inputValue[i])){
+                    return true;
+                }
+            }
+            return false;
+        }
+        if ((isNum(inputValue)) && (inputValue.length > 5)) {
+            return { valid: true };
+        }
+        return { error: "Your password must include minimum six characters including number" }
+    }
 
-    // validateRegisterEmail(inputValue){
+    validateRegisterForm = (inputValue, inputType) => {
 
-    // }
+        if (!this.hasContent(inputValue)) {
+            return { error: "content is required!" };
+        }
 
-    // (inputValue.includes('http://')) &&
-  
+        if (inputType === "email") {
+            return this.validateEmailForm(inputValue);
+        }
+        if (inputType === "password") {
+            return this.validatePasswordForm(inputValue)
+        }
+        return { valid: true };
+    }
+
 }
 
 export const validationService = new ValidationService;
