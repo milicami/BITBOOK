@@ -12,7 +12,7 @@ export const FeedList = (props) => {
         <Fragment>
             <div className='container'>
                 {props.posts.length === 0
-                    ? <p>nothing in feed</p>
+                    ? <p>Loading...</p>
                     : (props.posts.map((post, key) => {
 
                         switch (post.type) {
@@ -26,7 +26,6 @@ export const FeedList = (props) => {
                                 return <p>not valid type of input</p>
                         }
                     }))}
-
             </div>
         </Fragment>
     );
