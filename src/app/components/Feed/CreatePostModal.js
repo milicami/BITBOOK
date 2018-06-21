@@ -25,9 +25,11 @@ export class CreatePostModal extends Component {
     handleChange = (event) => {
         this.setState({
             inputValue: event.target.value,
+            error: null
+
         });
 
-        this.setState({ error: null });
+        // this.setState({ error: null });
 
         const valObj = validationService.validatePost(event.target.value, this.props.newPostType)
 

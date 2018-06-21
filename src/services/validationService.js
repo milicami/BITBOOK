@@ -34,7 +34,7 @@ class ValidationService {
     }
 
     validateImageForm = (inputValue) => {
-        if ((inputValue.includes('http://www.')) &&  (inputValue.includes('jpg')) || (inputValue.includes('gif')) || (inputValue.includes('png')) || (inputValue.includes('bmp'))) {
+        if ((inputValue.includes('http://')) &&  (inputValue.includes('jpg')) || (inputValue.includes('gif')) || (inputValue.includes('png')) || (inputValue.includes('bmp'))) {
             return { valid: true };
         }
 
@@ -47,6 +47,7 @@ class ValidationService {
         }
         return { error: "Upload youtube file format." }
     }
+    
 
     validateRegisterName (inputValue){
        return inputValue ? "" : { registerError: "Content is required!" }
