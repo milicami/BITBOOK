@@ -37,6 +37,7 @@ export class Login extends Component {
                 return response.json()
             })
             .then(response => {
+                console.log(response)
                 if (response.error) {
                     this.setState({ error: response.error.message })
                 } else if (!this.state.error) {
@@ -44,10 +45,17 @@ export class Login extends Component {
                     this.props.onSuccessfulLogin();
                 }
             })
+            .then(() => {
+                usersServices.fetchProfile()
+                .then((response) =>{
+                    window.localStorage.setItem("userId", response.userId);
+                })
+            })
 
         this.setState({
                 username: "",
                 password: "",
+                
             })
     }
 

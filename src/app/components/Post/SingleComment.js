@@ -2,8 +2,6 @@ import React, { Fragment, Component } from 'react';
 import '../../../css/singleComment.css'
 import { usersServices } from '../../../services/usersServices';
 
-
-
 export class SingleComment extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +10,6 @@ export class SingleComment extends Component {
             user: {}
         }
     }
-
 
     loadSingleUser = () => {
         usersServices.fetchSingleUser(this.props.comment.authorId)

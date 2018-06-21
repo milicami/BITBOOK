@@ -4,12 +4,11 @@ import { get, post } from './APIService';
 
 class CommentsServices {
 
-
     fetchComments(postId) {
         return get(`${commentsEndpoint}${postId}`)
           
     }
-
+    
     addComment(data) {
         return post(`${newCommentEndpoint}`, data)
     }

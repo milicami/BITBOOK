@@ -1,7 +1,7 @@
 import { textPostEndpoint, imagePostEndpoint, videoPostEndpoint } from "../shared/constants";
 import { postEndpoint, requestsHeader, commentsEndpoint, baseEndpoint } from '../shared/constants';
 import { Post } from '../entities/Post';
-import { get } from './APIService';
+import { get, deleteData, getHeaders} from './APIService';
 import { TextPost, VideoPost, ImagePost } from '../entities/Post';
 import { validationService } from './validationService'
 
@@ -75,14 +75,17 @@ class PostsServices {
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify(newPost),
-            headers: {
-                'Content-Type': 'application/json',
-                'Key': 'bitbookdev',
-                'SessionId': '2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE'
-            }
+            headers: getHeaders()
         }
         return fetch(this.chooseEndpoint(postBodyType), requestOptions)
     };
+
+    deleteSinglePost = (singlePostId) => {
+
+        const urlEndpoint = (`${postEndpoint}/${singlePostId}`);
+        return deleteData(urlEndpoint)
+
+    }
 
 };
 
