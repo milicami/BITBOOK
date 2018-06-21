@@ -52,7 +52,7 @@ export class PeoplePage extends Component {
         return (
             <Fragment>
                 <SearchUsers searchInputValue={this.state.inputValue} handlerSearchUsers={this.handlerSearchUsers} closeSearch={this.closeSearch} />
-                <UserList users={this.state.filteredUsers} />
+                <UserList users={this.state.filteredUsers} searchInputValue={this.state.inputValue}/>
             </Fragment>
         )
     }

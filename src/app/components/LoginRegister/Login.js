@@ -7,11 +7,15 @@ export class Login extends Component {
         super(props)
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            error: null
         }
     }
 
     handleChange = (event) => {
+        this.setState({
+            error: null
+        });
         const field = event.target.name
         this.setState({
             [field]: event.target.value
@@ -32,16 +36,19 @@ export class Login extends Component {
             .then(response => {
                 return response.json()
             })
-            .then(object => {
-                
-                localStorage.setItem('sessionId', object.sessionId);
-                this.props.onSuccessfulLogin();
+            .then(response => {
+                if (response.error) {
+                    this.setState({ error: response.error.message })
+                } else if (!this.state.error) {
+                    localStorage.setItem('sessionId', response.sessionId);
+                    this.props.onSuccessfulLogin();
+                }
             })
 
         this.setState({
-            username: "",
-            password: ""
-        })
+                username: "",
+                password: "",
+            })
     }
 
     render() {
@@ -49,10 +56,6 @@ export class Login extends Component {
             <div className="row login-form">
                 <form className="col s12">
                     <div className="row">
-                        {/* <div className="input-field col s12">
-                            <input id="email" type="email" className="validate" name="email" value={this.state.email} onChange={this.handleChange}/>
-                            <label htmlFor="email">Email</label>
-                        </div> */}
                         <div className="input-field col s12">
                             <input id="username" type="text" className="validate" name="username" value={this.state.username} onChange={this.handleChange} />
                             <label htmlFor="username">Username</label>
@@ -62,7 +65,8 @@ export class Login extends Component {
                             <label htmlFor="password">Password</label>
                         </div>
                         <div className="col s12">
-                            <a className="#e57373 red lighten-2 btn" onClick={this.handleLogin} type="submit" name="action">Login</a>
+                            <a className="#e57373 red lighten-2 btn" disabled={this.state.error || !this.state.password || !this.state.username} onClick={this.handleLogin} type="submit" name="action">Login</a>
+                            <p>{this.state.error}</p>
                         </div>
                     </div>
                 </form>

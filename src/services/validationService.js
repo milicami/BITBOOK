@@ -48,6 +48,25 @@ class ValidationService {
         return { error: "Upload youtube file format." }
     }
 
+    validateRegisterName (inputValue){
+       return inputValue ? "" : { registerError: "Content is required!" }
+        // if (!this.hasContent(inputValue)) {
+        //     return { registerError: "Content is required!" };
+        // }
+       
+        // return { registerError: "" };
+    }
+
+    // validateRegisterUsername (inputValue){
+    //     if (!this.hasContent(inputValue)) {
+    //         return { registerError: "Content is required!" };
+    //     }
+        
+    // }
+
+    // validateRegisterEmail(inputValue){
+
+    // }
   
 }
 

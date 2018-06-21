@@ -27,6 +27,12 @@ export class LogInRegisterPage extends Component {
         this.props.history.push('/feed');
     }
 
+    onRegister = () =>{
+        this.setState({
+            loginTab: true
+        });
+    }
+
     render() {
         return (
             <div className="container">
@@ -39,15 +45,15 @@ export class LogInRegisterPage extends Component {
                         <div className="row">
                             <div className="form-wrapper">
                                 <div className="col s6">
-                                    <p className={`${this.state.loginTab ? "active" : "" }`} onClick={this.tabLoginClick}>Login</p>
+                                    <p className={`${this.state.loginTab ? "active1" : "" }`} onClick={this.tabLoginClick}>Login</p>
                                 </div>
                                 <div className="col s6">
-                                    <p className={`${this.state.loginTab ? "" : "active" }`} onClick={this.tabRegisterClick}>Register</p>
+                                    <p className={`${this.state.loginTab ? "" : "active1" }`} onClick={this.tabRegisterClick}>Register</p>
                                 </div>
                                 <div className="row">
                                     <div className="col s12">
                                      {
-                                         this.state.loginTab ? <Login onSuccessfulLogin={this.onLogin}/> : <Register />
+                                         this.state.loginTab ? <Login onSuccessfulLogin={this.onLogin}/> : <Register onSuccessfulRegister={this.onRegister}/>
                                      }
                                         
                                     </div>

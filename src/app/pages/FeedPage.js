@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { postsServices } from '../../services/postsServices';
 import { FeedList } from '../components/Feed/FeedList';
 import { CreatePostButton } from '../components/Feed/CreatePostButton';
-import { CreatePostModal } from "../components/Modals/CreatePostModal";
+import { CreatePostModal } from "../components/Feed/CreatePostModal";
 import M from "materialize-css";
 import { TextPost } from '../../entities/Post';
 import { FilterPostsDropDown } from "../components/Feed/FilterPostsDropDown"
@@ -15,6 +15,7 @@ export class FeedPage extends Component {
             posts: [],
             newPostType: '',
             filteredPosts: [],
+            selectedPostFilter: "allPosts"
         })
     }
 
@@ -52,13 +53,14 @@ export class FeedPage extends Component {
         }
     }
 
-    filterPosts = (event) => {
+    filterPosts = (event) => {    
         if (event.target.value === 'text') {
             const filteredPosts = this.state.posts.filter((post) => {
                 return post.type.includes('text');
             })
             this.setState({
-                filteredPosts: filteredPosts
+                filteredPosts: filteredPosts,
+                selectedPostFilter: event.target.value
             });
 
         } else if (event.target.value === 'imageUrl') {
@@ -66,7 +68,8 @@ export class FeedPage extends Component {
                 return post.type.includes('image');
             })
             this.setState({
-                filteredPosts: filteredPosts
+                filteredPosts: filteredPosts,
+                selectedPostFilter: event.target.value
             });
             
         } else if (event.target.value === 'videoUrl') {
@@ -74,12 +77,14 @@ export class FeedPage extends Component {
                 return post.type.includes('video');
             })
             this.setState({
-                filteredPosts: filteredPosts
+                filteredPosts: filteredPosts,
+                selectedPostFilter: event.target.value                
             }); 
         } else if (event.target.value === "allPosts") {
             const filteredPosts = this.state.posts
             this.setState({
-                filteredPosts: filteredPosts
+                filteredPosts: filteredPosts,
+                selectedPostFilter: event.target.value
             })
         }
     }
@@ -111,6 +116,9 @@ export class FeedPage extends Component {
             .then(newPost => {
                 this.setState({ newPostType: null });
                 this.loadPosts();
+                this.setState({
+                    selectedPostFilter: "allPosts"
+                });
             }).catch(message => {
                 console.log(message)
                 alert("Failed to create post.")
@@ -132,7 +140,7 @@ export class FeedPage extends Component {
                             <FeedList posts={this.state.filteredPosts} />
                         </div>
                         <div className="col s2">
-                            <FilterPostsDropDown filterPosts={this.filterPosts} />
+                            <FilterPostsDropDown filterPosts={this.filterPosts} selectedPostFilter={this.state.selectedPostFilter}/>
                             <CreatePostModal newPostType={this.state.newPostType} handleSubmit={this.handleSubmit} loadPosts={this.loadPosts} handleClose={this.handleClose} />
                             <CreatePostButton handlerPostType={this.handlerPostType} />
                         </div>

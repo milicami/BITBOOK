@@ -94,6 +94,7 @@ export class CreatePostModal extends Component {
                         {this.props.newPostType === 'imageUrl' && this.renderImageForm()}
 
                         {error && <p>{error}</p>}
+
                     </div>
                     <div className="modal-footer">
                         <a href="#!" className="modal-close waves-effect waves-green btn-flat" disabled={this.state.error || !this.state.inputValue} onClick={this.onCreate}>POST</a>

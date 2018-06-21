@@ -44,6 +44,7 @@ export class App extends Component {
               </Switch>
 
               :
+              
               <Switch>
                 <Route exact path="/" component={LogInRegisterPage} />
                <Redirect from='/' to='/' />

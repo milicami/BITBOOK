@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { usersServices } from '../../services/usersServices';
-import '../../css/profilePage.css'
 import { EditProfileModal } from '../components/Modals/EditProfileModal';
 import M from "materialize-css";
 import { validationService } from '../../services/validationService';
