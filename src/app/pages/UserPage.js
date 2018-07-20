@@ -39,8 +39,8 @@ export class UserPage extends Component {
                     <div className='col s12 center'>
                         <div className='row'>
                             {userInfo.avatarUrl === ""
-                                ? <img src="http://www.iglax.org/wp-content/uploads/2014/12/placeholder-Copy-11-1.png" className='responsive-img circle img' />
-                                : <img src={userInfo.avatarUrl} className='responsive-img circle img' />}
+                                ? <img src="http://www.iglax.org/wp-content/uploads/2014/12/placeholder-Copy-11-1.png" className='responsive-img circle img' alt="avatar" />
+                                : <img src={userInfo.avatarUrl} className='responsive-img circle img' alt="avatar" />}
                         </div>
                         <div className='row profile-name'>
                             <h4>{userInfo.name}</h4>

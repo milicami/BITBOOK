@@ -34,9 +34,6 @@ main {
 .people-search {
   margin-top: 20px;
 }
-/* .fixed-action-btn {
-  right: 250px !important;
-} */
 
 .bitbook {
   font-size: 20px;
@@ -44,11 +41,15 @@ main {
 
 .loader-style {
   position: absolute;
-  top: 50%;
-  bottom: 50%;
+  top: 450px;
+  left: 700px;
 }
 
-.loader-wrapper {
-  position: relative;
-  height: 300px;
+#welcome-header {
+  display: none;
+}
+
+.team-name {
+  text-align: center;
+  padding-bottom: 20px;
 }

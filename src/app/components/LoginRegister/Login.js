@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { usersServices } from "../../../services/usersServices";
-import { Switch, Route, Redirect } from 'react-router-dom';
+import '../../../css/loginRegister.css';
 
 export class Login extends Component {
     constructor(props) {
@@ -73,7 +73,7 @@ export class Login extends Component {
                             <label htmlFor="password">Password</label>
                         </div>
                         <div className="col s12">
-                            <a className="#e57373 red lighten-2 btn" disabled={this.state.error || !this.state.password || !this.state.username} onClick={this.handleLogin} type="submit" name="action">Login</a>
+                            <input type="submit" className="#e57373 red lighten-2 btn" id="comment-button" disabled={this.state.error || !this.state.password || !this.state.username} onClick={this.handleLogin}  name="action" value="Login" />
                             <p>{this.state.error}</p>
                         </div>
                     </div>

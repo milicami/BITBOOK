@@ -19,4 +19,4 @@ class UploadServices {
 
 }
 
-export const uploadServices = new UploadServices;
+export const uploadServices = new UploadServices();

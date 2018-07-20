@@ -7,16 +7,16 @@ import { createHashHistory } from 'history';
 export const Header = () => {
 
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems);
+    document.addEventListener('DOMContentLoaded', () => {
+        const elems = document.querySelectorAll('.sidenav');
+        const instances = M.Sidenav.init(elems);
       });
 
       const logoutHandler = (event) => {
         const history = createHashHistory();
           event.preventDefault();
           localStorage.removeItem("sessionId");
-          history.push("/")
+          history.push("/");
       }
     
     return (
@@ -30,7 +30,7 @@ export const Header = () => {
                             <li><Link to='/feed'>Feed</Link></li>
                             <li><Link to='/people'>People</Link></li>
                             <li><Link to='/profile'>Profile</Link></li>
-                            <li><a href="#" onClick={logoutHandler} className={`${!localStorage.getItem("sessionId") ? "hideLogout" : ""}`}>Logout</a></li> 
+                            <li onClick={logoutHandler} className={`${!localStorage.getItem("sessionId") ? "hideLogout" : ""}`}>Logout</li> 
                         </ul>
                     </div>
                 </div>

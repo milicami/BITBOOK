@@ -1,4 +1,4 @@
-import { commentsEndpoint, requestsHeader, newCommentEndpoint } from '../shared/constants';
+import { commentsEndpoint, newCommentEndpoint } from '../shared/constants';
 import { get, post } from './APIService';
 
 
@@ -14,4 +14,4 @@ class CommentsServices {
     }
 }
 
-export const commentsServices = new CommentsServices;
+export const commentsServices = new CommentsServices();

@@ -3,15 +3,16 @@ import { postsServices } from '../../services/postsServices';
 import { FeedList } from '../components/Feed/FeedList';
 import { CreatePostButton } from '../components/Feed/CreatePostButton';
 import { CreatePostModal } from "../components/Feed/CreatePostModal";
-import M from "materialize-css";
-import { TextPost } from '../../entities/Post';
-import { FilterPostsDropDown } from "../components/Feed/FilterPostsDropDown"
-import { usersServices } from '../../services/usersServices';
+import "materialize-css";
+import { FilterPostsDropDown } from "../components/Feed/FilterPostsDropDown";
+import { get } from '../../services/APIService';
 
 
 export class FeedPage extends Component {
+
     constructor(props) {
         super(props);
+
         this.state = ({
             posts: [],
             newPostType: '',
@@ -23,18 +24,8 @@ export class FeedPage extends Component {
 
     componentDidMount() {
         this.loadPosts();
-        // this.loadMyProfile();
+        this.handlePagination();
     }
-
-    // loadMyProfile = () => {
-    //     usersServices.fetchProfile()
-    //         .then(profile => {
-    //             this.setState({
-    //                 profile: profile
-    //             });
-    //             console.log("feed" + this.state.profile)
-    //         })
-    // }
 
     loadPosts = () => {
         postsServices.fetchPosts()
@@ -66,7 +57,8 @@ export class FeedPage extends Component {
         }
     }
 
-    filterPosts = (event) => {    
+    filterPosts = (event) => {
+
         if (event.target.value === 'text') {
             const filteredPosts = this.state.posts.filter((post) => {
                 return post.type.includes('text');
@@ -84,15 +76,15 @@ export class FeedPage extends Component {
                 filteredPosts: filteredPosts,
                 selectedPostFilter: event.target.value
             });
-            
+
         } else if (event.target.value === 'videoUrl') {
             const filteredPosts = this.state.posts.filter((post) => {
                 return post.type.includes('video');
             })
             this.setState({
                 filteredPosts: filteredPosts,
-                selectedPostFilter: event.target.value                
-            }); 
+                selectedPostFilter: event.target.value
+            });
 
         } else if (event.target.value === "allPosts") {
             const filteredPosts = this.state.posts
@@ -106,7 +98,6 @@ export class FeedPage extends Component {
     handleSubmit = (postBodyContent) => {
         let newPostPropertyType = this.state.newPostType;
         const userId = localStorage.getItem('userId')
-        // console.log('localStorage' + userId)
         const newPost = {
 
             date: Date.now(),
@@ -114,7 +105,6 @@ export class FeedPage extends Component {
             userDisplayName: "NoReturn",
             type: this.state.newPostType,
             numOfComments: 0,
-
         }
 
         if (newPostPropertyType === "text") {
@@ -150,6 +140,17 @@ export class FeedPage extends Component {
         });
     }
 
+    handlePagination = (event) => {
+
+        get('http://bitbookapi.azurewebsites.net/api/Posts?$top=10&$skip=10')
+            .then(data => {
+                this.setState({
+                    posts: data,
+                    filteredPosts: data
+                })
+            })
+    }
+
     render() {
         return (
             <Fragment>
@@ -159,11 +160,18 @@ export class FeedPage extends Component {
                             <FeedList posts={this.state.filteredPosts} />
                         </div>
                         <div className="col s2">
-                            <FilterPostsDropDown filterPosts={this.filterPosts} selectedPostFilter={this.state.selectedPostFilter}/>
+                            <FilterPostsDropDown filterPosts={this.filterPosts} selectedPostFilter={this.state.selectedPostFilter} />
                             <CreatePostModal newPostType={this.state.newPostType} handleSubmit={this.handleSubmit} loadPosts={this.loadPosts} handleClose={this.handleClose} />
                             <CreatePostButton handlerPostType={this.handlerPostType} />
                         </div>
                     </div>
+                    <ul className="pagination">
+                        <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
+                        <li className="active"><a href="#!">1</a></li>
+                        <li className="waves-effect"><a href="#!">2</a></li>
+                        <li className="waves-effect"><a href="#!">3</a></li>
+                        <li className="waves-effect"><a href="#!" onClick={this.handlePagination}><i className="material-icons">chevron_right</i></a></li>
+                    </ul>
                 </div>
             </Fragment>
         );

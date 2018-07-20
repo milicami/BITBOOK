@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import feedPage from "../../../css/feedPage.css";
+import "../../../css/feedPage.css";
 
 
 export const ImagePost = (props) => {

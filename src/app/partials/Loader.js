@@ -2,7 +2,7 @@ import React from "react";
 
 export const Loader = (props) => {
     return (
-        <div className='loader-wrapper'>
+        <div className='container'>
             <div className="loader-style">
                 <div className="preloader-wrapper big active">
                     <div className="spinner-layer spinner-blue">

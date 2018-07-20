@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import M from "materialize-css";
 import { validationService } from '../../../services/validationService';
-import '../../../css/profilePage.css'
+import '../../../css/profilePage.css';
 
 
 export class CreatePostModal extends Component {
@@ -9,7 +8,6 @@ export class CreatePostModal extends Component {
         super(props);
         this.state = {
             inputValue: '',
-            //hideValidateMessage: "hideValidateMessage",
             error: null
         }
     }
@@ -18,7 +16,6 @@ export class CreatePostModal extends Component {
         this.props.handleClose()
         this.setState({
             inputValue: "",
-            //hideValidateMessage: "hideValidateMessage",
             error: null
         })
     }
@@ -29,8 +26,6 @@ export class CreatePostModal extends Component {
             error: null
 
         });
-
-        // this.setState({ error: null });
 
         const valObj = validationService.validatePost(event.target.value, this.props.newPostType)
 

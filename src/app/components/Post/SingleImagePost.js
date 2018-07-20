@@ -1,6 +1,6 @@
 import React from 'react';
-import feedPage from "../../../css/feedPage.css";
-import { postsServices } from "../../../services/postsServices"
+import "../../../css/feedPage.css";
+import { postsServices } from "../../../services/postsServices";
 
 export const SingleImagePost = (props) => {
 

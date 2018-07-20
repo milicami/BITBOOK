@@ -1,7 +1,5 @@
-import { userEditProfileEndpoint, registerEndpoint } from '../shared/constants';
-
-
 export const getHeaders = () => {
+    
     let requestsHeader = {
         'Content-Type': 'application/json',
         'Key': 'bitbookdev',
@@ -27,7 +25,6 @@ export const get = (url) => {
             return response.json()
         })
 }
-
 
 export const post = (url, newContent) => {
 

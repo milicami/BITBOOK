@@ -2,10 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { usersServices } from '../../services/usersServices';
 import '../../css/profilePage.css'
 import { EditProfileModal } from '../components/Profile/EditProfileModal';
-import M from "materialize-css";
-import { validationService } from '../../services/validationService';
-import { uploadServices } from '../../services/uploadServices';
+import "materialize-css";
 import { Loader } from '../partials/Loader';
+
 
 export class ProfilePage extends Component {
     constructor(props) {
@@ -14,7 +13,6 @@ export class ProfilePage extends Component {
         this.state = {
             profile: null,
             showModal: false,
-
         }
     }
 
@@ -28,7 +26,6 @@ export class ProfilePage extends Component {
                 this.setState({
                     profile: response
                 });
-                // window.localStorage.setItem("userId", response.userId);
             })
     }
 
@@ -45,7 +42,6 @@ export class ProfilePage extends Component {
             showModal: true,
             name: this.state.profile.name,
             about: this.state.profile.aboutShort,
-            //photo: this.state.profile.avatarUrl
         })
     }
 
@@ -57,11 +53,11 @@ export class ProfilePage extends Component {
             about: event.target.value,
             photo: event.target.value
         })
-
     }
 
 
     render() {
+
         const profile = this.state.profile;
 
         if (profile === null) {
@@ -73,8 +69,8 @@ export class ProfilePage extends Component {
                     <div className='col s12 center'>
                         <div className='row'>
                             {profile.avatarUrl === ""
-                                ? <img src="http://www.iglax.org/wp-content/uploads/2014/12/placeholder-Copy-11-1.png" className='responsive-img circle img' />
-                                : <img src={profile.avatarUrl} className='responsive-img circle img' />}
+                                ? <img src="http://www.iglax.org/wp-content/uploads/2014/12/placeholder-Copy-11-1.png" className='responsive-img circle img' alt="avatar" />
+                                : <img src={profile.avatarUrl} className='responsive-img circle img' alt="avatar" />}
                         </div>
                         <div className='row profile-name'>
                             <h4>{profile.name}</h4>
