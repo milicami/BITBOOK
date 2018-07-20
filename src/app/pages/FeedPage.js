@@ -3,9 +3,7 @@ import { postsServices } from '../../services/postsServices';
 import { FeedList } from '../components/Feed/FeedList';
 import { CreatePostButton } from '../components/Feed/CreatePostButton';
 import { CreatePostModal } from "../components/Feed/CreatePostModal";
-import "materialize-css";
 import { FilterPostsDropDown } from "../components/Feed/FilterPostsDropDown";
-import { get } from '../../services/APIService';
 
 
 export class FeedPage extends Component {
@@ -18,16 +16,18 @@ export class FeedPage extends Component {
             newPostType: '',
             filteredPosts: [],
             selectedPostFilter: "allPosts",
-            profile: null
+            profile: null,
         })
     }
 
     componentDidMount() {
         this.loadPosts();
-        this.handlePagination();
     }
 
+
+
     loadPosts = () => {
+        
         postsServices.fetchPosts()
             .then(data => {
                 this.setState({
@@ -42,6 +42,7 @@ export class FeedPage extends Component {
     }
 
     handlerPostType = (event) => {
+
         if (event.target.parentElement.getAttribute("data-target") === 'modalPost') {
             this.setState({
                 newPostType: 'text'
@@ -134,22 +135,19 @@ export class FeedPage extends Component {
             })
     }
 
-    handleClose = () => {
+    handleClose = (event) => {
+        console.log(event);
+        
         this.setState({
             newPostType: null
         });
     }
 
-    handlePagination = (event) => {
-
-        get('http://bitbookapi.azurewebsites.net/api/Posts?$top=10&$skip=10')
-            .then(data => {
-                this.setState({
-                    posts: data,
-                    filteredPosts: data
-                })
-            })
+    onSuccessfulDelete = () => {
+        this.loadPosts();  
     }
+
+  
 
     render() {
         return (
@@ -157,7 +155,7 @@ export class FeedPage extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col s10">
-                            <FeedList posts={this.state.filteredPosts} />
+                            <FeedList posts={this.state.filteredPosts} onSuccessfulDelete={this.onSuccessfulDelete} />
                         </div>
                         <div className="col s2">
                             <FilterPostsDropDown filterPosts={this.filterPosts} selectedPostFilter={this.state.selectedPostFilter} />
@@ -165,13 +163,7 @@ export class FeedPage extends Component {
                             <CreatePostButton handlerPostType={this.handlerPostType} />
                         </div>
                     </div>
-                    <ul className="pagination">
-                        <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
-                        <li className="active"><a href="#!">1</a></li>
-                        <li className="waves-effect"><a href="#!">2</a></li>
-                        <li className="waves-effect"><a href="#!">3</a></li>
-                        <li className="waves-effect"><a href="#!" onClick={this.handlePagination}><i className="material-icons">chevron_right</i></a></li>
-                    </ul>
+             
                 </div>
             </Fragment>
         );

@@ -5,6 +5,7 @@ import M from "materialize-css";
 export class CreatePostButton extends Component {
     constructor(props) {
         super(props);
+
         this.floatingButtons = React.createRef();
     }
 

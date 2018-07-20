@@ -9,8 +9,6 @@ class PostsServices {
         return get(postEndpoint)
             .then(postList => {
                 return postList.filter(post => {
-                    console.log(post);
-                    
                     if (post.videoUrl) {
                         return post.videoUrl.includes("youtube")
                     }

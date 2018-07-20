@@ -4,6 +4,7 @@ import '../../../css/profilePage.css';
 
 
 export class CreatePostModal extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -12,30 +13,38 @@ export class CreatePostModal extends Component {
         }
     }
 
-    closeOnX = (event) => {
+    handleClose = (event) => {
+
+        console.log(event);
+
         this.props.handleClose()
+
         this.setState({
             inputValue: "",
             error: null
         })
     }
 
+ 
+
     handleChange = (event) => {
+
         this.setState({
             inputValue: event.target.value,
             error: null
 
         });
 
-        const valObj = validationService.validatePost(event.target.value, this.props.newPostType)
+        // const valObj = validationService.validatePost(event.target.value, this.props.newPostType)
 
-        if (valObj.error) {
-            this.setState({ error: valObj.error });
-            return;
-        }
+        // if (valObj.error) {
+        //     this.setState({ error: valObj.error });
+        //     return;
+        // }
     };
 
     onCreate = (event) => {
+
         event.preventDefault();
 
         this.props.handleSubmit(this.state.inputValue);
@@ -76,16 +85,18 @@ export class CreatePostModal extends Component {
     }
 
     render() {
+
         const { error } = this.state;
 
         if (!this.props.newPostType) {
             return null;
         }
+        
         return (
             <div className="overlay">
                 <div id="modalPost" className="modal open" style={{ display: 'block', top: 150 }}>
                     <div className="modal-content">
-                        <i className="material-icons right modal-close" onClick={this.closeOnX} >close</i>
+                        <i className="material-icons right modal-close" onClick={this.handleClose} >close</i>
 
                         {this.props.newPostType === 'text' && this.renderTextForm()}
                         {this.props.newPostType === 'videoUrl' && this.renderVideoForm()}

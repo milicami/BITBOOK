@@ -6,6 +6,7 @@ import M from "materialize-css";
 export class FilterPostsDropDown extends Component {
     constructor(props) {
         super(props);
+        
         this.select = React.createRef();
     }
 

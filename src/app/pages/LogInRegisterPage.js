@@ -6,6 +6,7 @@ import { Register } from '../components/LoginRegister/Register';
 export class LogInRegisterPage extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             loginTab: true
         }

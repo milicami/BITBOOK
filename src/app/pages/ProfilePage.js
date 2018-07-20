@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { usersServices } from '../../services/usersServices';
-import '../../css/profilePage.css'
+import '../../css/profilePage.css';
 import { EditProfileModal } from '../components/Profile/EditProfileModal';
 import "materialize-css";
 import { Loader } from '../partials/Loader';
@@ -37,6 +37,7 @@ export class ProfilePage extends Component {
     }
 
     handleOpenModal = (event) => {
+
         event.preventDefault();
         this.setState({
             showModal: true,
@@ -46,7 +47,9 @@ export class ProfilePage extends Component {
     }
 
     handleClose = (event) => {
+
         event.preventDefault();
+        
         this.setState({
             showModal: false,
             name: event.target.value,
@@ -88,10 +91,10 @@ export class ProfilePage extends Component {
                         </div>
                         <div className='row'>
                             <div className='col s12 m6'>
-                                <button type="button" className="btn btn-light comment-button" ><i className="fas fa-circle"></i> {profile.postsCount} Posts</button>
+                                <button className="comment-button posts-count" disabled><i className="fas fa-circle"></i> {profile.postsCount} Posts</button>
                             </div>
-                            <div className='col s12 m6'>
-                                <button type="button" className="btn btn-light comment-button"><i className="fas fa-circle"></i> {profile.commentsCount} Comments</button>
+                            <div className='col s12 m6' id="post-comments-button">
+                                <button className="comment-button comments-count"  disabled><i className="fas fa-circle"></i> {profile.commentsCount} Comments</button>
                             </div>
                         </div>
                     </div>

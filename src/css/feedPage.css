@@ -2,15 +2,6 @@
     padding-top: 20px;
 }
 
-/* .card-action {
-    padding-top: 5%;
-    /* padding-bottom: 5%; */
-/* } */ 
-
-/* .card-image {
-    padding: 5%;
-} */
-
 .card-video {
     margin-top: 20px;
     margin-bottom: 20px ;
@@ -20,4 +11,27 @@
 
 .post-color {
     color: black;
+}
+
+#hide {
+    display: none;
+}
+
+.parent {
+    position: relative;
+}
+
+.delete-button {
+    display: block;
+    background-color: rgb(216, 143, 131);
+    text-align: right;
+    border-radius: 50%;
+    position: absolute;
+    top:0px;
+    right: 12px;
+    margin-bottom: 5px;
+}
+
+.single-post {
+    margin-top: 50px;
 }
