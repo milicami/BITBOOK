@@ -1,13 +1,11 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import { SingleUser } from "./SingleUserCard";
-import { SearchUsers } from "./SearchUsers";
 import {NoUser} from "./NoUser";
-import { Loader } from "../../partials/Loader"
+import { Loader } from "../../partials/Loader";
 
 export class UserList extends Component {
-    constructor(props) {
-        super(props);
-    };
+    
+    
 
     renderUsers = () => {
         const users = this.props.users;

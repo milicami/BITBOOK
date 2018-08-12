@@ -3,40 +3,31 @@ import { postsServices } from '../../services/postsServices';
 import { FeedList } from '../components/Feed/FeedList';
 import { CreatePostButton } from '../components/Feed/CreatePostButton';
 import { CreatePostModal } from "../components/Feed/CreatePostModal";
-import M from "materialize-css";
-import { TextPost } from '../../entities/Post';
-import { FilterPostsDropDown } from "../components/Feed/FilterPostsDropDown"
-import { usersServices } from '../../services/usersServices';
+import { FilterPostsDropDown } from "../components/Feed/FilterPostsDropDown";
 
 
 export class FeedPage extends Component {
+
     constructor(props) {
         super(props);
+
         this.state = ({
             posts: [],
             newPostType: '',
             filteredPosts: [],
             selectedPostFilter: "allPosts",
-            profile: null
+            profile: null,
         })
     }
 
     componentDidMount() {
         this.loadPosts();
-        // this.loadMyProfile();
     }
 
-    // loadMyProfile = () => {
-    //     usersServices.fetchProfile()
-    //         .then(profile => {
-    //             this.setState({
-    //                 profile: profile
-    //             });
-    //             console.log("feed" + this.state.profile)
-    //         })
-    // }
+
 
     loadPosts = () => {
+        
         postsServices.fetchPosts()
             .then(data => {
                 this.setState({
@@ -51,6 +42,7 @@ export class FeedPage extends Component {
     }
 
     handlerPostType = (event) => {
+
         if (event.target.parentElement.getAttribute("data-target") === 'modalPost') {
             this.setState({
                 newPostType: 'text'
@@ -66,7 +58,8 @@ export class FeedPage extends Component {
         }
     }
 
-    filterPosts = (event) => {    
+    filterPosts = (event) => {
+
         if (event.target.value === 'text') {
             const filteredPosts = this.state.posts.filter((post) => {
                 return post.type.includes('text');
@@ -84,15 +77,15 @@ export class FeedPage extends Component {
                 filteredPosts: filteredPosts,
                 selectedPostFilter: event.target.value
             });
-            
+
         } else if (event.target.value === 'videoUrl') {
             const filteredPosts = this.state.posts.filter((post) => {
                 return post.type.includes('video');
             })
             this.setState({
                 filteredPosts: filteredPosts,
-                selectedPostFilter: event.target.value                
-            }); 
+                selectedPostFilter: event.target.value
+            });
 
         } else if (event.target.value === "allPosts") {
             const filteredPosts = this.state.posts
@@ -106,7 +99,6 @@ export class FeedPage extends Component {
     handleSubmit = (postBodyContent) => {
         let newPostPropertyType = this.state.newPostType;
         const userId = localStorage.getItem('userId')
-        // console.log('localStorage' + userId)
         const newPost = {
 
             date: Date.now(),
@@ -114,7 +106,6 @@ export class FeedPage extends Component {
             userDisplayName: "NoReturn",
             type: this.state.newPostType,
             numOfComments: 0,
-
         }
 
         if (newPostPropertyType === "text") {
@@ -144,11 +135,19 @@ export class FeedPage extends Component {
             })
     }
 
-    handleClose = () => {
+    handleClose = (event) => {
+        console.log(event);
+        
         this.setState({
             newPostType: null
         });
     }
+
+    onSuccessfulDelete = () => {
+        this.loadPosts();  
+    }
+
+  
 
     render() {
         return (
@@ -156,14 +155,15 @@ export class FeedPage extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col s10">
-                            <FeedList posts={this.state.filteredPosts} />
+                            <FeedList posts={this.state.filteredPosts} onSuccessfulDelete={this.onSuccessfulDelete} />
                         </div>
                         <div className="col s2">
-                            <FilterPostsDropDown filterPosts={this.filterPosts} selectedPostFilter={this.state.selectedPostFilter}/>
+                            <FilterPostsDropDown filterPosts={this.filterPosts} selectedPostFilter={this.state.selectedPostFilter} />
                             <CreatePostModal newPostType={this.state.newPostType} handleSubmit={this.handleSubmit} loadPosts={this.loadPosts} handleClose={this.handleClose} />
                             <CreatePostButton handlerPostType={this.handlerPostType} />
                         </div>
                     </div>
+             
                 </div>
             </Fragment>
         );

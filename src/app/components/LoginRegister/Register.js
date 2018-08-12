@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { usersServices } from "../../../services/usersServices"
 import { validationService } from '../../../services/validationService';
+import '../../../css/loginRegister.css';
 
 export class Register extends Component {
     constructor(props) {
@@ -29,7 +30,6 @@ export class Register extends Component {
         }
     }
 
-   
     handleRegister = (event) => {
         event.preventDefault()
         const username = this.state.username;
@@ -72,7 +72,6 @@ export class Register extends Component {
                         <div className="input-field col s12">
                             <input id="name" type="text" className="validate" name="name" value={this.state.name}  onChange={this.handleChange} />
                             <label for="name">Full Name</label>
-                            {/* <p>{this.state.registerError}</p> */}
                         </div>
                         <div className="input-field col s12">
                             <input id="username" type="text" className="validate" name="username" value={this.state.username}  onChange={this.handleChange} />
@@ -89,7 +88,7 @@ export class Register extends Component {
                             <label for="password">Password</label>
                         </div>
                         <div className="col s12">
-                            <a className="#e57373 red lighten-2 btn" disabled={registerError || !this.state.name || !this.state.username || !this.state.email || !this.state.password} onClick={this.handleRegister} type="submit" name="action">Register</a>
+                            <input type="submit" className="#e57373 red lighten-2 btn" id="comment-button" disabled={registerError || !this.state.name || !this.state.username || !this.state.email || !this.state.password} onClick={this.handleRegister}  name="action" value="Register" />
                             {registerError && <p>{registerError}</p>}
                         </div>
                     </div>

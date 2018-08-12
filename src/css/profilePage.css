@@ -5,15 +5,22 @@ img.img {
     height: 200px;
     margin: 0 auto;
     margin-top: 6%;
-
 }
 
 .comment-button {
     background-color: rgb(216, 143, 131);
     border-radius: 30px;
-    margin-bottom: 5%;
-    
+    margin-bottom: 5%;  
 }
+
+.posts-count, .comments-count{
+    width: 170px;
+    height: 40px;
+    color: aliceblue;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
 .about-short {
     margin-top: 6%;
     margin-bottom: 10%
@@ -23,14 +30,11 @@ img.img {
     margin-top: 3%;
     padding-top: 7px;
     padding-bottom: 7px;
-
 }
 
 .type-upload {
     margin-top: 3%;
 }
-
-
 
 .modal-style {
    width: 60%;
@@ -47,18 +51,22 @@ img.img {
     right: 0;
     background-color: rgba(0,0,0,0.1);
     z-index: 10000000;
-  }
+}
 
 .upload-photo {
     margin-bottom: 3%;
 }
 
 #cancel {
-margin-right: 10px;
+    margin-right: 10px;
 }
 
 .preview-image {
     width: 70px;
     height: 70px;
     margin-bottom: 2%;
+}
+
+#posts-comments-button {
+    background-color: rgb(216, 143, 131);
 }

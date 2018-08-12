@@ -1,4 +1,4 @@
-import feedPage from "../../../css/feedPage.css";
+import "../../../css/feedPage.css";
 import React, { Component } from 'react';
 import M from "materialize-css";
 
@@ -6,6 +6,7 @@ import M from "materialize-css";
 export class FilterPostsDropDown extends Component {
     constructor(props) {
         super(props);
+        
         this.select = React.createRef();
     }
 

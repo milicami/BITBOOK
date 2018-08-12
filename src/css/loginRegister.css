@@ -1,9 +1,7 @@
 .form-wrapper {
     border: 1px solid black;
-}
-
-.form-wrapper {
     margin-top: 60px;
+    border-radius: 10px;
 }
 
 .login-form {
@@ -17,5 +15,12 @@
 }
 
 .login-text {
-    padding: 40px;
+    margin-right: 20px;
+}
+
+#comment-button {
+    background-color: rgb(216, 143, 131);
+    border-radius: 30px;
+    margin-bottom: 5%;
+    text-align: right;
 }

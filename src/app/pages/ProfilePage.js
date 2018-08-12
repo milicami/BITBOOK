@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { usersServices } from '../../services/usersServices';
-import '../../css/profilePage.css'
+import '../../css/profilePage.css';
 import { EditProfileModal } from '../components/Profile/EditProfileModal';
-import M from "materialize-css";
-import { validationService } from '../../services/validationService';
-import { uploadServices } from '../../services/uploadServices';
+import "materialize-css";
 import { Loader } from '../partials/Loader';
+
 
 export class ProfilePage extends Component {
     constructor(props) {
@@ -14,7 +13,6 @@ export class ProfilePage extends Component {
         this.state = {
             profile: null,
             showModal: false,
-
         }
     }
 
@@ -28,7 +26,6 @@ export class ProfilePage extends Component {
                 this.setState({
                     profile: response
                 });
-                // window.localStorage.setItem("userId", response.userId);
             })
     }
 
@@ -40,28 +37,30 @@ export class ProfilePage extends Component {
     }
 
     handleOpenModal = (event) => {
+
         event.preventDefault();
         this.setState({
             showModal: true,
             name: this.state.profile.name,
             about: this.state.profile.aboutShort,
-            //photo: this.state.profile.avatarUrl
         })
     }
 
     handleClose = (event) => {
+
         event.preventDefault();
+        
         this.setState({
             showModal: false,
             name: event.target.value,
             about: event.target.value,
             photo: event.target.value
         })
-
     }
 
 
     render() {
+
         const profile = this.state.profile;
 
         if (profile === null) {
@@ -73,8 +72,8 @@ export class ProfilePage extends Component {
                     <div className='col s12 center'>
                         <div className='row'>
                             {profile.avatarUrl === ""
-                                ? <img src="http://www.iglax.org/wp-content/uploads/2014/12/placeholder-Copy-11-1.png" className='responsive-img circle img' />
-                                : <img src={profile.avatarUrl} className='responsive-img circle img' />}
+                                ? <img src="http://www.iglax.org/wp-content/uploads/2014/12/placeholder-Copy-11-1.png" className='responsive-img circle img' alt="avatar" />
+                                : <img src={profile.avatarUrl} className='responsive-img circle img' alt="avatar" />}
                         </div>
                         <div className='row profile-name'>
                             <h4>{profile.name}</h4>
@@ -92,10 +91,10 @@ export class ProfilePage extends Component {
                         </div>
                         <div className='row'>
                             <div className='col s12 m6'>
-                                <button type="button" className="btn btn-light comment-button" ><i className="fas fa-circle"></i> {profile.postsCount} Posts</button>
+                                <button className="comment-button posts-count" disabled><i className="fas fa-circle"></i> {profile.postsCount} Posts</button>
                             </div>
-                            <div className='col s12 m6'>
-                                <button type="button" className="btn btn-light comment-button"><i className="fas fa-circle"></i> {profile.commentsCount} Comments</button>
+                            <div className='col s12 m6' id="post-comments-button">
+                                <button className="comment-button comments-count"  disabled><i className="fas fa-circle"></i> {profile.commentsCount} Comments</button>
                             </div>
                         </div>
                     </div>

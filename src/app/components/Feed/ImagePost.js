@@ -1,17 +1,30 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import feedPage from "../../../css/feedPage.css";
+import "../../../css/feedPage.css";
+import { postsServices } from '../../../services/postsServices';
 
 
 export const ImagePost = (props) => {
 
-    const { type, id, imageUrl, commentsNum } = props.post
+    const { type, id, imageUrl, commentsNum } = props.post;
+    const myUserId = localStorage.getItem("userId");
+
+    const handleDelete = (event) => {
+
+        event.preventDefault();
+
+        postsServices.deleteSinglePost(props.post.id)
+            .then(() => props.onSuccessfulDelete());
+    }
 
     return (
         <Link to={`/post/${type}/${id}`} className='post-color'>
             <div className="row">
-                <div className="col s12">
-                    <div className="card">
+                <div className="col s12 single-post">
+                    <div className="card parent">
+                        <button className="delete-button" id={props.post.userId == myUserId ? "" : "hide"} onClick={handleDelete}>X</button>
+                        <br />
+                        <br />
                         <div className="card-image">
                             <img src={imageUrl} alt='img' />
                         </div>

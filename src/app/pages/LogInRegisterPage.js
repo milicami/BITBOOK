@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import loginnregister from "../../css/loginnregister.css"
+import  "../../css/loginRegister.css";
 import { Login } from '../components/LoginRegister/Login';
-import { Register } from '../components/LoginRegister/Register'
+import { Register } from '../components/LoginRegister/Register';
 
 export class LogInRegisterPage extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             loginTab: true
         }
@@ -39,7 +40,7 @@ export class LogInRegisterPage extends Component {
                 <div className="row">
                     <div className="col s7">
                         <h1>BitBook {`${this.state.loginTab ? "Login" : "Register" }`} </h1>
-                        <p className="login-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet dictum mauris. Etiam faucibus tempor ex, vitae maximus lectus finibus non. Vestibulum aliquet dui a feugiat sollicitudin. Etiam elementum imperdiet purus eget dapibus. In hac habitasse platea dictumst. Nam posuere porta mauris et aliquet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce sed dapibus odio, vel mollis diam.</p>
+                        <p className="login-text">Welcome to Bitbook. Create an account or log in to our social network. Connect with friends, family and other people you know. Share photos and videos and get updates.</p>
                     </div>
                     <div className="col s5">
                         <div className="row">

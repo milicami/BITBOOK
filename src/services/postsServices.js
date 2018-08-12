@@ -1,9 +1,7 @@
 import { textPostEndpoint, imagePostEndpoint, videoPostEndpoint } from "../shared/constants";
-import { postEndpoint, requestsHeader, commentsEndpoint, baseEndpoint } from '../shared/constants';
-import { Post } from '../entities/Post';
+import { postEndpoint, baseEndpoint } from '../shared/constants';
 import { get, deleteData, getHeaders} from './APIService';
 import { TextPost, VideoPost, ImagePost } from '../entities/Post';
-import { validationService } from './validationService'
 
 class PostsServices {
 
@@ -29,15 +27,12 @@ class PostsServices {
                     }
                 })
             })
-            .catch(error => {
-                console.error(error);
-                alert('Something went wrong, try again later.')
-            })
     }
 
-
     typeUrl = (type) => {
-        let url = ''
+
+        let url = '';
+
         switch (type) {
             case 'text':
                 return url = `${baseEndpoint}/TextPosts/`;
@@ -48,18 +43,16 @@ class PostsServices {
             default:
                 return '...'
         }
-        return url;
-
     }
 
     fetchSinglePost(type, singlePostId) {
 
         const urlEndpoint = (`${this.typeUrl(type)}${singlePostId}`);
-        return get(urlEndpoint)
-
+        return get(urlEndpoint);
     }
 
     chooseEndpoint = (postBodyType) => {
+
         let makePostEndpoint = "";
         if (postBodyType === "text") {
             makePostEndpoint = textPostEndpoint
@@ -83,10 +76,8 @@ class PostsServices {
     deleteSinglePost = (singlePostId) => {
 
         const urlEndpoint = (`${postEndpoint}/${singlePostId}`);
-        return deleteData(urlEndpoint)
-
+        return deleteData(urlEndpoint);
     }
-
 };
 
-export const postsServices = new PostsServices;
+export const postsServices = new PostsServices();

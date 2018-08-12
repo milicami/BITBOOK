@@ -4,6 +4,7 @@ import { uploadServices } from '../../../services/uploadServices';
 import '../../../css/profilePage.css';
 
 export class Form extends Component {
+    
     constructor(props) {
         super(props);
 
